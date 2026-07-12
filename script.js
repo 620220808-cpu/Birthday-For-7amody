@@ -33,18 +33,15 @@ dust.style.opacity = 1 - value/100;
 
 if(value >= 100){
 
-
 clearInterval(cleaning);
 
+document.querySelector(".car").classList.add("shine");
 
-message.style.display = "block";
+message.style.display="block";
 
-
-button.style.display = "none";
-
+button.style.display="none";
 
 confetti();
-
 
 }
 
