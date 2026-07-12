@@ -8,14 +8,23 @@ let percent = document.getElementById("percent");
 
 let message = document.getElementById("message");
 
+let car = document.querySelector(".car");
+
 
 let value = 0;
+let cleaning = false;
+
 
 
 button.onclick = function(){
 
 
-let cleaning = setInterval(function(){
+if(cleaning) return;
+
+cleaning = true;
+
+
+let timer = setInterval(function(){
 
 
 value += 5;
@@ -27,21 +36,37 @@ progress.style.width = value + "%";
 percent.innerHTML = value + "%";
 
 
-dust.style.opacity = 1 - value/100;
+// إزالة التراب تدريجياً
+
+dust.style.opacity = 1 - value / 100;
 
 
 
 if(value >= 100){
 
-clearInterval(cleaning);
 
-document.querySelector(".car").classList.add("shine");
+clearInterval(timer);
 
-message.style.display="block";
 
-button.style.display="none";
+// إضافة لمعة للعربية
 
-confetti();
+car.classList.add("shine");
+
+
+// إظهار الرسالة
+
+message.style.display = "block";
+
+
+// إخفاء الزر
+
+button.style.display = "none";
+
+
+// تشغيل الكونفيتي
+
+createConfetti();
+
 
 }
 
@@ -54,36 +79,44 @@ confetti();
 
 
 
-function confetti(){
+
+function createConfetti(){
 
 
-for(let i=0;i<80;i++){
+for(let i = 0; i < 100; i++){
 
 
-let star=document.createElement("div");
+let piece = document.createElement("div");
 
 
-star.style.position="fixed";
-
-star.style.width="10px";
-
-star.style.height="10px";
-
-star.style.left=Math.random()*100+"vw";
-
-star.style.top="-20px";
-
-star.style.background=
-"rgb("+Math.random()*255+
-","+Math.random()*255+
-","+Math.random()*255+")";
+piece.className = "confetti";
 
 
-star.style.animation=
-"fall 3s linear";
+piece.style.left =
+Math.random() * 100 + "vw";
 
 
-document.body.appendChild(star);
+piece.style.top =
+"-20px";
+
+
+piece.style.background =
+"rgb("
++ Math.random()*255 +
+","
++ Math.random()*255 +
+","
++ Math.random()*255 +
+")";
+
+
+piece.style.animationDuration =
+(2 + Math.random()*3) + "s";
+
+
+
+document.body.appendChild(piece);
+
 
 
 }
