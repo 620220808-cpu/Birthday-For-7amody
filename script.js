@@ -1,115 +1,95 @@
-let progress = 0;
+let button = document.getElementById("clean");
 
-const bar = document.getElementById("bar");
-const cleaned = document.getElementById("cleaned");
-const percent = document.getElementById("percent");
-const finish = document.getElementById("finish");
-const popup = document.getElementById("popup");
-const car = document.getElementById("car");
+let dust = document.getElementById("dust");
 
-const dust = document.getElementById("dust");
-const ctx = dust.getContext("2d");
+let progress = document.getElementById("progress");
 
-function resizeCanvas() {
-    dust.width = car.clientWidth;
-    dust.height = car.clientHeight;
+let percent = document.getElementById("percent");
 
-    ctx.fillStyle = "#5b5148";
-    ctx.fillRect(0, 0, dust.width, dust.height);
+let message = document.getElementById("message");
 
-    for (let i = 0; i < 2500; i++) {
-        ctx.fillStyle = "rgba(80,70,60,.35)";
-        ctx.beginPath();
-        ctx.arc(
-            Math.random() * dust.width,
-            Math.random() * dust.height,
-            Math.random() * 3,
-            0,
-            Math.PI * 2
-        );
-        ctx.fill();
-    }
-}
 
-window.onload = resizeCanvas;
-window.onresize = resizeCanvas;
+let value = 0;
 
-let drawing = false;
 
-function scratch(x, y) {
+button.onclick = function(){
 
-    ctx.globalCompositeOperation = "destination-out";
 
-    ctx.beginPath();
-    ctx.arc(x, y, 35, 0, Math.PI * 2);
-    ctx.fill();
+let cleaning = setInterval(function(){
 
-    progress += 0.4;
 
-    if (progress > 100)
-        progress = 100;
+value += 5;
 
-    bar.style.width = progress + "%";
 
-    cleaned.innerHTML = Math.floor(progress) + "%";
+progress.style.width = value + "%";
 
-    percent.innerHTML = Math.floor(progress) + "%";
-}
 
-dust.addEventListener("mousedown", () => drawing = true);
+percent.innerHTML = value + "%";
 
-window.addEventListener("mouseup", () => drawing = false);
 
-dust.addEventListener("mousemove", e => {
+dust.style.opacity = 1 - value/100;
 
-    if (!drawing) return;
 
-    const rect = dust.getBoundingClientRect();
 
-    scratch(
-        e.clientX - rect.left,
-        e.clientY - rect.top
-    );
+if(value >= 100){
 
-});
 
-dust.addEventListener("touchmove", e => {
+clearInterval(cleaning);
 
-    const rect = dust.getBoundingClientRect();
 
-    scratch(
-        e.touches[0].clientX - rect.left,
-        e.touches[0].clientY - rect.top
-    );
+message.style.display = "block";
 
-});
 
-finish.onclick = () => {
+button.style.display = "none";
 
-    if (progress < 100) {
 
-        alert("امسح العربية كلها الأول 🚗");
+confetti();
 
-        return;
-
-    }
-
-    popup.classList.add("show");
-
-    confetti({
-
-        particleCount:250,
-
-        spread:180,
-
-        origin:{y:.6}
-
-    });
 
 }
 
-function closePopup(){
 
-    popup.classList.remove("show");
+},200);
+
+
+
+}
+
+
+
+function confetti(){
+
+
+for(let i=0;i<80;i++){
+
+
+let star=document.createElement("div");
+
+
+star.style.position="fixed";
+
+star.style.width="10px";
+
+star.style.height="10px";
+
+star.style.left=Math.random()*100+"vw";
+
+star.style.top="-20px";
+
+star.style.background=
+"rgb("+Math.random()*255+
+","+Math.random()*255+
+","+Math.random()*255+")";
+
+
+star.style.animation=
+"fall 3s linear";
+
+
+document.body.appendChild(star);
+
+
+}
+
 
 }
