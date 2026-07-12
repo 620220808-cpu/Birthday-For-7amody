@@ -1,343 +1,186 @@
-body {
+body{
 
-    margin: 0;
-    height: 100vh;
-
-    background:
-    linear-gradient(
-        rgba(0,0,0,.85),
-        rgba(0,0,0,.9)
-    );
-
-    font-family: Arial, sans-serif;
-
-    color: white;
-
-    text-align: center;
+margin:0;
+height:100vh;
+background:linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.9));
+font-family:Arial,sans-serif;
+color:white;
+text-align:center;
 
 }
 
+.garage{
 
-
-.garage {
-
-    padding-top: 40px;
+padding-top:30px;
 
 }
 
+h3{
 
-
-h3 {
-
-    color: #00cfff;
-
-    font-size: 30px;
-
-    animation: neonText 2s infinite;
+color:#00cfff;
+font-size:28px;
+animation:neonText 2s infinite;
 
 }
 
+h1{
 
-
-h1 {
-
-    font-size: 55px;
-
-    color: #00cfff;
-
-    text-shadow:
-    0 0 10px #00cfff,
-    0 0 30px #00cfff;
-
-    animation: titleMove 1.5s ease;
+font-size:55px;
+color:#00cfff;
+text-shadow:0 0 10px #00cfff,0 0 30px #00cfff;
 
 }
 
+p{
 
-
-p {
-
-    font-size: 24px;
+font-size:22px;
 
 }
 
+.car-box{
 
-
-/* العربية */
-
-.car-box {
-
-    position: relative;
-
-    width: 500px;
-
-    max-width: 90%;
-
-    margin: auto;
+position:relative;
+width:450px;
+max-width:90%;
+margin:auto;
 
 }
 
+.car{
 
-
-.car {
-
-    width: 100%;
-
-    border-radius: 20px;
-
-    box-shadow:
-    0 0 40px #00cfff;
-
-
-    /* حركة دخول العربية */
-
-    animation: carEnter 1.5s ease;
+width:100%;
+border-radius:20px;
+box-shadow:0 0 40px #00cfff;
+display:block;
 
 }
 
+/* التراب */
 
+#dust{
 
-/* طبقة التراب */
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+border-radius:20px;
 
-#dust {
+background:
+radial-gradient(circle,#8a7157 1px,transparent 2px),
+radial-gradient(circle,#6f5b45 2px,transparent 3px),
+rgba(120,100,80,.75);
 
-    position:absolute;
+background-size:18px 18px,25px 25px;
 
-    top:0;
-
-    left:0;
-
-    width:100%;
-
-    height:100%;
-
-
-    background:
-    rgba(120,100,80,.75);
-
-
-    border-radius:20px;
-
-    transition: opacity .3s;
+transition:opacity .3s;
 
 }
 
+/* اللمعة */
 
+.shine{
 
-/* لمعة بعد التنظيف */
-
-.shine {
-
-    animation: shine 2s infinite;
+animation:shine 2s infinite;
 
 }
 
+.progress-container{
 
-
-
-
-/* شريط التقدم */
-
-.progress-container {
-
-    width:500px;
-
-    max-width:90%;
-
-    height:25px;
-
-    background:#222;
-
-    margin:30px auto;
-
-    border-radius:20px;
-
-    overflow:hidden;
+width:450px;
+max-width:90%;
+height:25px;
+background:#222;
+margin:25px auto;
+border-radius:20px;
+overflow:hidden;
 
 }
 
+#progress{
 
-
-#progress {
-
-    height:100%;
-
-    width:0%;
-
-    background:#00cfff;
-
-    box-shadow:
-    0 0 20px #00cfff;
-
-    transition:.3s;
+height:100%;
+width:0%;
+background:#00cfff;
+transition:.3s;
 
 }
 
+button{
 
-
-
-
-/* الزر */
-
-button {
-
-    padding:18px 40px;
-
-    font-size:22px;
-
-    border:none;
-
-    border-radius:40px;
-
-    background:#00cfff;
-
-    color:white;
-
-    cursor:pointer;
-
-    transition:.3s;
+padding:18px 40px;
+font-size:22px;
+border:none;
+border-radius:40px;
+background:#00cfff;
+color:white;
+cursor:pointer;
 
 }
 
+button:hover{
 
-
-button:hover {
-
-    transform:scale(1.1);
-
-    box-shadow:
-    0 0 20px #00cfff;
+transform:scale(1.08);
 
 }
 
+#message{
 
-
-
-
-/* الرسالة */
-
-#message {
-
-    display:none;
-
-    margin-top:40px;
-
-    font-size:35px;
-
-    color:#00cfff;
-
-    text-shadow:
-    0 0 20px #00cfff;
-
-
-    animation: messageShow 1.5s ease;
+display:none;
+margin-top:35px;
+font-size:35px;
+color:#00cfff;
+text-shadow:0 0 20px #00cfff;
 
 }
 
+.confetti{
 
-
-
-
-/* Animations */
-
-
-
-@keyframes carEnter {
-
-
-from {
-
-    transform:translateX(300px);
-
-    opacity:0;
+position:fixed;
+width:10px;
+height:10px;
+border-radius:50%;
+animation:fall linear forwards;
 
 }
 
+@keyframes fall{
 
-to {
+from{
 
-    transform:translateX(0);
-
-    opacity:1;
-
-}
-
+transform:translateY(-20px) rotate(0deg);
 
 }
 
+to{
 
-
-@keyframes shine {
-
-
-0% {
-
-    filter:brightness(1);
+transform:translateY(110vh) rotate(720deg);
 
 }
 
+}
 
-50% {
+@keyframes shine{
 
-    filter:brightness(1.8);
+0%{filter:brightness(1);}
+50%{filter:brightness(1.7);}
+100%{filter:brightness(1);}
 
 }
 
+@keyframes neonText{
 
-100% {
+0%,100%{
 
-    filter:brightness(1);
-
-}
-
+text-shadow:0 0 10px #00cfff;
 
 }
 
+50%{
 
-
-@keyframes neonText {
-
-
-0%,100% {
-
-    text-shadow:
-    0 0 10px #00cfff;
+text-shadow:0 0 30px #00cfff;
 
 }
-
-
-50% {
-
-    text-shadow:
-    0 0 30px #00cfff;
-
-}
-
-
-}
-
-
-
-@keyframes titleMove {
-
-
-from {
-
-    transform:translateY(-50px);
-
-    opacity:0;
-
-}
-
-
-to {
-
-    transform:translateY(0);
-
-    opacity:1;
-
-}
-
 
 }
 
