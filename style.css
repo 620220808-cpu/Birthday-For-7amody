@@ -186,25 +186,4 @@ text-shadow:
 0 0 20px #00cfff;
 
 }
-.car {
-    width:100%;
-    border-radius:20px;
-    box-shadow:0 0 40px #00cfff;
-    
-    animation: carEnter 1.5s ease;
-}
 
-
-@keyframes carEnter {
-
-from {
-    transform: translateX(300px);
-    opacity:0;
-}
-
-to {
-    transform: translateX(0);
-    opacity:1;
-}
-
-}
