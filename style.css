@@ -1,87 +1,188 @@
-body {
-    margin: 0;
-    height: 100vh;
-    background:
-    linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.9)),
-    url("Fiat 126p Old school.jfif");
+body{
 
-    background-size: cover;
-    background-position: center;
+margin:0;
+height:100vh;
 
-    font-family: Arial, sans-serif;
-    color: white;
-    text-align: center;
-}
+background:
+linear-gradient(
+rgba(0,0,0,.85),
+rgba(0,0,0,.9)
+);
 
+font-family:Arial,sans-serif;
 
-.container {
-    padding-top: 50px;
-}
+color:white;
 
-
-h3 {
-    color: #00cfff;
-    font-size: 28px;
-}
-
-
-h1 {
-    font-size: 55px;
-    color: #00cfff;
-    text-shadow:
-    0 0 10px #00cfff,
-    0 0 30px #00cfff;
-}
-
-
-p {
-    font-size: 25px;
-}
-
-
-#car {
-    width: 70%;
-    max-width: 700px;
-    border-radius: 20px;
-    margin-top: 30px;
-
-    box-shadow:
-    0 0 30px #00cfff;
-}
-
-
-button {
-
-    margin-top: 30px;
-    padding: 18px 40px;
-
-    border: none;
-    border-radius: 40px;
-
-    background: #00cfff;
-    color:white;
-
-    font-size: 22px;
-    cursor:pointer;
+text-align:center;
 
 }
 
 
-button:hover {
 
-    transform: scale(1.1);
+.garage{
+
+padding-top:40px;
 
 }
 
 
-#message {
 
-    display:none;
+h3{
 
-    margin-top:40px;
+color:#00cfff;
 
-    font-size:30px;
+font-size:30px;
 
-    color:#00cfff;
+}
+
+
+
+h1{
+
+font-size:55px;
+
+color:#00cfff;
+
+text-shadow:
+0 0 10px #00cfff,
+0 0 30px #00cfff;
+
+}
+
+
+
+p{
+
+font-size:24px;
+
+}
+
+
+
+.car-box{
+
+position:relative;
+
+width:500px;
+
+max-width:90%;
+
+margin:auto;
+
+}
+
+
+
+.car{
+
+width:100%;
+
+border-radius:20px;
+
+box-shadow:
+0 0 40px #00cfff;
+
+}
+
+
+
+#dust{
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+
+background:
+rgba(120,100,80,.75);
+
+
+border-radius:20px;
+
+}
+
+
+
+.progress-container{
+
+width:500px;
+
+max-width:90%;
+
+height:25px;
+
+background:#222;
+
+margin:30px auto;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+
+
+#progress{
+
+height:100%;
+
+width:0%;
+
+background:#00cfff;
+
+box-shadow:
+0 0 20px #00cfff;
+
+}
+
+
+
+button{
+
+padding:18px 40px;
+
+font-size:22px;
+
+border:none;
+
+border-radius:40px;
+
+background:#00cfff;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+
+
+button:hover{
+
+transform:scale(1.1);
+
+}
+
+
+
+#message{
+
+display:none;
+
+margin-top:40px;
+
+font-size:35px;
+
+color:#00cfff;
+
+text-shadow:
+0 0 20px #00cfff;
 
 }
