@@ -3,20 +3,20 @@ RESET
 ========================== */
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Cairo',sans-serif;
 }
 
 html{
-scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-background:#020812;
-color:#fff;
-overflow-x:hidden;
+    background:#020812;
+    color:white;
+    overflow-x:hidden;
 }
 
 /* ==========================
@@ -25,77 +25,60 @@ LOADING
 
 #loading{
 
-position:fixed;
+    position:fixed;
+    inset:0;
+    background:#020812;
 
-top:0;
-left:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 
-width:100%;
-height:100vh;
-
-background:#020812;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-flex-direction:column;
-
-z-index:99999;
+    z-index:99999;
 
 }
 
 #loading h1{
 
-font-size:55px;
-
-color:#59d4ff;
-
-margin-bottom:15px;
+    font-size:55px;
+    color:#59d4ff;
 
 }
 
 #loading p{
 
-color:#ddd;
-
-margin-bottom:25px;
+    margin:20px 0;
 
 }
 
-.loadingBar{
+.loading-bar{
 
-width:300px;
-
-height:8px;
-
-background:#333;
-
-border-radius:20px;
-
-overflow:hidden;
+    width:320px;
+    height:8px;
+    background:#333;
+    border-radius:20px;
+    overflow:hidden;
 
 }
 
 .bar{
 
-height:100%;
-
-width:0;
-
-background:#59d4ff;
-
-animation:load 3s linear forwards;
+    width:0;
+    height:100%;
+    background:#59d4ff;
+    animation:loading 3s linear forwards;
 
 }
 
-@keyframes load{
+@keyframes loading{
 
-0%{width:0;}
+    from{
+        width:0;
+    }
 
-100%{width:100%;}
+    to{
+        width:100%;
+    }
 
 }
 
@@ -105,203 +88,60 @@ HERO
 
 .hero{
 
-height:100vh;
+    height:100vh;
 
-background:url("images/road.jpg") center center/cover no-repeat;
+    background:linear-gradient(#02152c,#000);
 
-display:flex;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-justify-content:center;
-
-align-items:center;
-
-position:relative;
-
-}
-
-.hero::before{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-background:rgba(0,0,0,.55);
+    text-align:center;
 
 }
 
 .overlay{
 
-position:relative;
-
-z-index:2;
-
-text-align:center;
-
-max-width:700px;
-
-padding:20px;
-
-}
-
-.overlay h3{
-
-font-size:28px;
-
-color:#59d4ff;
+    z-index:5;
 
 }
 
 .overlay h1{
 
-font-size:70px;
-
-margin:20px 0;
+    font-size:70px;
+    margin-bottom:20px;
 
 }
 
 .overlay p{
 
-font-size:22px;
-
-line-height:1.8;
+    font-size:25px;
 
 }
 
 #start{
 
-margin-top:35px;
+    margin-top:40px;
 
-padding:18px 45px;
+    padding:18px 45px;
 
-border:none;
+    border:none;
 
-border-radius:50px;
+    border-radius:50px;
 
-font-size:20px;
+    cursor:pointer;
 
-cursor:pointer;
+    font-size:20px;
 
-background:#59d4ff;
+    background:#59d4ff;
 
-color:#05111f;
-
-transition:.4s;
-
-box-shadow:0 0 25px #59d4ff;
+    transition:.4s;
 
 }
 
 #start:hover{
 
-transform:scale(1.08);
-
-box-shadow:0 0 40px #59d4ff;
-
-}
-/* ==========================
-ROAD SECTION
-========================== */
-
-#roadSection{
-
-position:relative;
-
-height:100vh;
-
-overflow:hidden;
-
-background:linear-gradient(#02152c,#000);
-
-}
-
-/* ==========================
-SKY
-========================== */
-
-.sky{
-
-position:absolute;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-}
-
-/* Moon */
-
-.moon{
-
-position:absolute;
-
-top:60px;
-
-right:80px;
-
-width:120px;
-
-height:120px;
-
-border-radius:50%;
-
-background:white;
-
-box-shadow:
-0 0 30px white,
-0 0 70px white,
-0 0 120px white;
-
-}
-
-/* Stars */
-
-#stars{
-
-position:absolute;
-
-width:100%;
-
-height:100%;
-
-overflow:hidden;
-
-}
-
-.star{
-
-position:absolute;
-
-background:white;
-
-border-radius:50%;
-
-animation:twinkle 2s infinite alternate;
-
-}
-
-@keyframes twinkle{
-
-0%{
-
-opacity:.3;
-
-transform:scale(1);
-
-}
-
-100%{
-
-opacity:1;
-
-transform:scale(1.8);
-
-}
+    transform:scale(1.08);
 
 }
 
@@ -309,48 +149,138 @@ transform:scale(1.8);
 ROAD
 ========================== */
 
-.road{
+#roadSection{
 
-position:absolute;
+    position:relative;
 
-bottom:0;
+    height:100vh;
 
-width:100%;
+    overflow:hidden;
 
-height:220px;
-
-background:#2f2f2f;
-
-overflow:hidden;
+    background:linear-gradient(#02152c,#000);
 
 }
 
-/* الخط الأبيض */
+.sky{
+
+    position:absolute;
+    inset:0;
+
+}
+
+.moon{
+
+    position:absolute;
+
+    top:70px;
+    right:80px;
+
+    width:120px;
+    height:120px;
+
+    border-radius:50%;
+
+    background:white;
+
+    box-shadow:
+    0 0 30px white,
+    0 0 80px white;
+
+}
+
+#stars{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+}
+
+.star{
+
+    position:absolute;
+
+    background:white;
+
+    border-radius:50%;
+
+    animation:twinkle 2s infinite alternate;
+
+}
+
+@keyframes twinkle{
+
+    from{
+
+        opacity:.3;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+/* ==========================
+ROAD
+========================== */
+
+.road{
+
+    position:absolute;
+
+    bottom:0;
+
+    width:100%;
+
+    height:220px;
+
+    background:#2f2f2f;
+
+    overflow:hidden;
+
+}
 
 .middleLine{
+
     position:absolute;
+
     top:50%;
+
     width:500%;
+
     height:8px;
+
     background:repeating-linear-gradient(
+
         90deg,
+
         white 0 80px,
+
         transparent 80px 160px
+
     );
+
     animation:roadMove .45s linear infinite;
+
 }
 
 @keyframes roadMove{
 
     from{
+
         transform:translateX(0);
+
     }
 
     to{
-        transform:translateX(-320px);
-    }
 
-}
+        transform:translateX(-320px);
+
+    }
 
 }
 
@@ -359,202 +289,70 @@ CAR
 ========================== */
 
 .car{
+
     position:absolute;
-    bottom:25px;   /* جربي بين 20 و35 */
-    left:-300px;
-    width:250px;
-    z-index:999;
-}
 
+    bottom:85px;
 
-}
+    left:120px;
 
-/* اهتزاز بسيط */
+    width:280px;
 
-.car{
-    position:absolute;
-    bottom:95px;
-    left:0;
-    width:300px;
-    z-index:999;
-}
+    z-index:1000;
 
-@keyframes engine{
-
-from{
-
-transform:translateY(0);
-
-}
-
-to{
-
-transform:translateY(-2px);
-
-}
-
-}
-/* ==========================
-HEADLIGHT
-========================== */
-
-.car::before{
-
-content:"";
-
-position:absolute;
-
-right:-120px;
-
-top:70px;
-
-width:180px;
-
-height:40px;
-
-background:linear-gradient(
-90deg,
-rgba(255,255,180,.9),
-rgba(255,255,180,.4),
-transparent
-);
-
-filter:blur(12px);
-
-transform:skewX(-8deg);
-
-opacity:.9;
-
-}
-
-/* ==========================
-FOG
-========================== */
-
-#roadSection::before{
-
-content:"";
-
-position:absolute;
-
-bottom:120px;
-
-left:-100%;
-
-width:300%;
-
-height:120px;
-
-background:linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,.08),
-transparent
-);
-
-filter: none;
-animation:fogMove 15s linear infinite;
-
-}
-
-@keyframes fogMove{
-
-0%{
-
-transform:translateX(0);
-
-}
-
-100%{
-
-transform:translateX(-35%);
-
-}
+    filter:drop-shadow(0 8px 12px rgba(0,0,0,.5));
 
 }
 
 /* ==========================
 STATIONS
 ========================== */
+
 .station{
 
-position:relative;
+    height:100vh;
 
-height:300px;
+    background:linear-gradient(#041326,#071d38);
 
-overflow:hidden;
+    display:flex;
 
-background:#07182c;
+    justify-content:center;
+
+    align-items:center;
 
 }
 
 .board{
 
-position:absolute;
+    width:360px;
 
-right:-450px;
+    padding:25px;
 
-top:90px;
+    background:#2e8b57;
 
-width:320px;
+    color:white;
 
-padding:20px;
+    font-size:28px;
 
-background:#7b552f;
+    text-align:center;
 
-border:8px solid #a67c42;
+    border-radius:15px;
 
-border-radius:12px;
+    border:5px solid white;
 
-font-size:28px;
+    opacity:0;
 
-font-weight:bold;
+    transform:translateY(60px);
 
-text-align:center;
-
-transition:2s;
+    transition:1s;
 
 }
 
 .board.show{
 
-right:420px;
+    opacity:1;
 
-}
-
-.board::before{
-
-content:"";
-
-position:absolute;
-
-left:48%;
-
-bottom:-90px;
-
-width:14px;
-
-height:90px;
-
-background:#8a6034;
-
-}
-
-.board::after{
-
-content:"";
-
-position:absolute;
-
-left:58%;
-
-bottom:-90px;
-
-width:14px;
-
-height:90px;
-
-background:#8a6034;
+    transform:translateY(0);
 
 }
 
@@ -564,118 +362,140 @@ DESTINATION
 
 #destination{
 
-position:relative;
+    min-height:100vh;
 
-min-height:100vh;
+    display:flex;
 
-display:flex;
+    justify-content:center;
 
-justify-content:center;
+    align-items:center;
 
-align-items:center;
+    flex-direction:column;
 
-flex-direction:column;
+    background:linear-gradient(#041326,#000);
 
-background:linear-gradient(#041326,#000);
+    position:relative;
 
-padding:100px 20px;
-
-overflow:hidden;
+    overflow:hidden;
 
 }
 
 .sea{
 
-position:absolute;
+    position:absolute;
 
-bottom:0;
+    bottom:0;
 
-left:0;
+    left:0;
 
-width:100%;
+    width:100%;
 
-height:180px;
+    height:180px;
 
-background:linear-gradient(#0a6da0,#1ea5e9);
-
-opacity:.75;
+    background:linear-gradient(#0b6ea8,#2eaef0);
 
 }
 
 .finalCar{
 
-width:300px;
+    width:320px;
 
-margin-bottom:30px;
-
-filter:drop-shadow(0 0 25px #59d4ff);
-
-z-index:5;
+    margin-bottom:20px;
 
 }
 
 .finalBox{
 
-position:relative;
+    text-align:center;
 
-z-index:10;
+    z-index:5;
 
-text-align:center;
-
-max-width:800px;
+    max-width:800px;
 
 }
 
 .finalBox h1{
 
-font-size:45px;
+    font-size:48px;
 
-margin-bottom:20px;
-
-color:#59d4ff;
+    margin-bottom:20px;
 
 }
 
 .finalBox h2{
 
-font-size:32px;
+    font-size:32px;
 
-margin-bottom:20px;
+    line-height:1.8;
 
-line-height:1.8;
+    margin-bottom:20px;
 
 }
 
 .finalBox p{
 
-font-size:22px;
+    font-size:24px;
 
-margin-bottom:35px;
-
-color:#ddd;
+    margin-bottom:35px;
 
 }
 
 #restart{
 
-padding:18px 45px;
+    padding:18px 45px;
 
-border:none;
+    border:none;
 
-border-radius:50px;
+    border-radius:50px;
 
-background:#59d4ff;
+    cursor:pointer;
 
-font-size:20px;
+    font-size:20px;
 
-cursor:pointer;
-
-transition:.3s;
+    background:#59d4ff;
 
 }
 
-#restart:hover{
+/* ==========================
+HEARTS
+========================== */
 
-transform:scale(1.08);
+#hearts{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+}
+
+.heart{
+
+    position:absolute;
+
+    bottom:-30px;
+
+    animation:heartUp 6s linear forwards;
+
+}
+
+@keyframes heartUp{
+
+    from{
+
+        transform:translateY(0);
+
+        opacity:1;
+
+    }
+
+    to{
+
+        transform:translateY(-110vh);
+
+        opacity:0;
+
+    }
 
 }
