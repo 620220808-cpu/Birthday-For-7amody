@@ -1,87 +1,79 @@
 // ==========================
-// LOADING
+// Loading
 // ==========================
 
-window.addEventListener("load", () => {
+window.addEventListener("load",()=>{
 
-    setTimeout(() => {
+setTimeout(()=>{
 
-        const loading = document.getElementById("loading");
+document.getElementById("loading").style.display="none";
 
-        if (loading) {
-
-            loading.style.display = "none";
-
-        }
-
-    },3000);
+},3000);
 
 });
 
 // ==========================
-// ELEMENTS
+// Elements
 // ==========================
 
-const startBtn=document.getElementById("start");
-const restartBtn=document.getElementById("restart");
+const start=document.getElementById("start");
 const music=document.getElementById("music");
-
-const road=document.getElementById("roadSection");
+const restart=document.getElementById("restart");
 
 // ==========================
-// START
+// Start Journey
 // ==========================
 
-if(startBtn){
+start.addEventListener("click",()=>{
 
-startBtn.addEventListener("click",()=>{
+music.play().catch(()=>{});
 
-    startBtn.style.display="none";
+document.getElementById("roadSection").scrollIntoView({
 
-    if(music){
-
-        music.play().catch(()=>{});
-
-    }
-
-    road.scrollIntoView({
-
-        behavior:"smooth"
-
-    });
-
-    setTimeout(showBoard,1500);
+behavior:"smooth"
 
 });
 
-}
+setTimeout(showBoard,1500);
+
+});
+
+// ==========================
+// Restart
+// ==========================
+
+restart.addEventListener("click",()=>{
+
+location.reload();
+
+});
 // ==========================
 // STARS
 // ==========================
 
-const stars=document.getElementById("stars");
+const stars = document.getElementById("stars");
 
-if(stars){
+if (stars) {
 
-for(let i=0;i<180;i++){
+    for (let i = 0; i < 200; i++) {
 
-const star=document.createElement("div");
+        const star = document.createElement("div");
 
-star.className="star";
+        star.className = "star";
 
-const size=Math.random()*3+1;
+        const size = Math.random() * 3 + 1;
 
-star.style.width=size+"px";
-star.style.height=size+"px";
+        star.style.width = size + "px";
+        star.style.height = size + "px";
 
-star.style.left=Math.random()*100+"%";
-star.style.top=Math.random()*100+"%";
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
 
-star.style.animationDelay=Math.random()*2+"s";
+        star.style.animationDelay = Math.random() * 2 + "s";
 
-stars.appendChild(star);
+        stars.appendChild(star);
 
-}
+    }
 
 }
 
@@ -89,75 +81,59 @@ stars.appendChild(star);
 // ROAD SIGNS
 // ==========================
 
-const boards=document.querySelectorAll(".board");
+const boards = document.querySelectorAll(".board");
 
-let currentBoard=0;
+let current = 0;
 
-function showBoard(){
+function showBoard() {
 
-if(currentBoard>=boards.length){
+    if (current >= boards.length) {
 
-return;
+        return;
 
-}
+    }
 
-boards[currentBoard].classList.add("show");
+    boards[current].classList.add("show");
 
-setTimeout(()=>{
+    setTimeout(() => {
 
-boards[currentBoard].classList.remove("show");
+        boards[current].classList.remove("show");
 
-currentBoard++;
+        current++;
 
-setTimeout(showBoard,800);
+        setTimeout(showBoard,800);
 
-},5000);
+    },5000);
 
 }
 // ==========================
 // HEARTS
 // ==========================
 
-const hearts=document.getElementById("hearts");
+const hearts = document.getElementById("hearts");
 
-function createHeart(){
+function createHeart() {
 
-if(!hearts) return;
+    const heart = document.createElement("div");
 
-const heart=document.createElement("div");
+    heart.className = "heart";
 
-heart.className="heart";
+    heart.innerHTML = "❤️";
 
-heart.innerHTML="❤️";
+    heart.style.left = Math.random() * 100 + "vw";
 
-heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize = (20 + Math.random() * 20) + "px";
 
-heart.style.fontSize=(20+Math.random()*20)+"px";
+    hearts.appendChild(heart);
 
-hearts.appendChild(heart);
+    setTimeout(() => {
 
-setTimeout(()=>{
+        heart.remove();
 
-heart.remove();
-
-},6000);
+    },6000);
 
 }
 
 setInterval(createHeart,1800);
 
-// ==========================
-// RESTART
-// ==========================
-
-if(restartBtn){
-
-restartBtn.addEventListener("click",()=>{
-
-location.reload();
-
-});
-
-}
-
-console.log("For Mo7amed ❤️");
+console.log("For Mo7amed ❤️ Loaded");
