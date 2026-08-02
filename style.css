@@ -1,6 +1,6 @@
-/* ===========================
+/* ==========================
 RESET
-=========================== */
+========================== */
 
 *{
 margin:0;
@@ -14,14 +14,14 @@ scroll-behavior:smooth;
 }
 
 body{
-background:#010814;
+background:#020812;
+color:#fff;
 overflow-x:hidden;
-color:white;
 }
 
-/* ===========================
-Loading
-=========================== */
+/* ==========================
+LOADING
+========================== */
 
 #loading{
 
@@ -33,15 +33,15 @@ left:0;
 width:100%;
 height:100vh;
 
-background:#010814;
+background:#020812;
 
 display:flex;
-
-flex-direction:column;
 
 justify-content:center;
 
 align-items:center;
+
+flex-direction:column;
 
 z-index:99999;
 
@@ -51,17 +51,21 @@ z-index:99999;
 
 font-size:55px;
 
-color:#49c8ff;
+color:#59d4ff;
+
+margin-bottom:15px;
 
 }
 
 #loading p{
 
-margin:20px 0;
+color:#ddd;
+
+margin-bottom:25px;
 
 }
 
-.loading-bar{
+.loadingBar{
 
 width:300px;
 
@@ -75,45 +79,35 @@ overflow:hidden;
 
 }
 
-.loading-bar span{
-
-display:block;
+.bar{
 
 height:100%;
 
 width:0;
 
-background:#49c8ff;
+background:#59d4ff;
 
-animation:loading 3s linear forwards;
-
-}
-
-@keyframes loading{
-
-from{
-width:0;
-}
-
-to{
-width:100%;
-}
+animation:load 3s linear forwards;
 
 }
 
-/* ===========================
-Hero
-=========================== */
+@keyframes load{
+
+0%{width:0;}
+
+100%{width:100%;}
+
+}
+
+/* ==========================
+HERO
+========================== */
 
 .hero{
 
 height:100vh;
 
-background:url(images/road.jpg);
-
-background-size:cover;
-
-background-position:center;
+background:url("images/road.jpg") center center/cover no-repeat;
 
 display:flex;
 
@@ -133,7 +127,7 @@ position:absolute;
 
 inset:0;
 
-background:rgba(0,0,0,.6);
+background:rgba(0,0,0,.55);
 
 }
 
@@ -141,17 +135,27 @@ background:rgba(0,0,0,.6);
 
 position:relative;
 
-z-index:10;
+z-index:2;
 
 text-align:center;
 
 max-width:700px;
 
+padding:20px;
+
+}
+
+.overlay h3{
+
+font-size:28px;
+
+color:#59d4ff;
+
 }
 
 .overlay h1{
 
-font-size:60px;
+font-size:70px;
 
 margin:20px 0;
 
@@ -165,62 +169,72 @@ line-height:1.8;
 
 }
 
-#startBtn{
+#start{
 
-margin-top:40px;
+margin-top:35px;
 
 padding:18px 45px;
 
-font-size:20px;
-
-background:#49c8ff;
-
 border:none;
 
-border-radius:40px;
+border-radius:50px;
+
+font-size:20px;
 
 cursor:pointer;
 
-box-shadow:0 0 25px #49c8ff;
+background:#59d4ff;
+
+color:#05111f;
 
 transition:.4s;
 
-}
-
-#startBtn:hover{
-
-transform:scale(1.1);
+box-shadow:0 0 25px #59d4ff;
 
 }
 
-/* ===========================
-ROAD
-=========================== */
+#start:hover{
 
-.drive{
+transform:scale(1.08);
+
+box-shadow:0 0 40px #59d4ff;
+
+}
+/* ==========================
+ROAD SECTION
+========================== */
+
+#roadSection{
 
 position:relative;
 
 height:100vh;
 
-background:linear-gradient(#04152d,#000);
-
 overflow:hidden;
 
+background:linear-gradient(#02152c,#000);
+
 }
+
+/* ==========================
+SKY
+========================== */
 
 .sky{
 
 position:absolute;
+
+top:0;
+
+left:0;
 
 width:100%;
 
 height:100%;
 
 }
-/* ===========================
-MOON
-=========================== */
+
+/* Moon */
 
 .moon{
 
@@ -228,26 +242,24 @@ position:absolute;
 
 top:60px;
 
-right:100px;
+right:80px;
 
 width:120px;
 
 height:120px;
 
-background:white;
-
 border-radius:50%;
+
+background:white;
 
 box-shadow:
 0 0 30px white,
-0 0 80px white,
+0 0 70px white,
 0 0 120px white;
 
 }
 
-/* ===========================
-STARS
-=========================== */
+/* Stars */
 
 #stars{
 
@@ -265,10 +277,6 @@ overflow:hidden;
 
 position:absolute;
 
-width:3px;
-
-height:3px;
-
 background:white;
 
 border-radius:50%;
@@ -281,7 +289,7 @@ animation:twinkle 2s infinite alternate;
 
 0%{
 
-opacity:.2;
+opacity:.3;
 
 transform:scale(1);
 
@@ -297,9 +305,9 @@ transform:scale(1.8);
 
 }
 
-/* ===========================
+/* ==========================
 ROAD
-=========================== */
+========================== */
 
 .road{
 
@@ -309,7 +317,7 @@ bottom:0;
 
 width:100%;
 
-height:240px;
+height:220px;
 
 background:#2f2f2f;
 
@@ -319,7 +327,7 @@ overflow:hidden;
 
 /* الخط الأبيض */
 
-.line{
+.middleLine{
 
 position:absolute;
 
@@ -330,16 +338,12 @@ width:300%;
 height:8px;
 
 background:repeating-linear-gradient(
-
 90deg,
-
 white 0 70px,
-
 transparent 70px 140px
-
 );
 
-animation:roadMove .8s linear infinite;
+animation:roadMove .6s linear infinite;
 
 }
 
@@ -359,235 +363,139 @@ transform:translateX(-220px);
 
 }
 
-/* ===========================
+/* ==========================
 CAR
-=========================== */
+========================== */
 
 .car{
 
 position:absolute;
 
-bottom:90px;
+bottom:85px;
 
-left:50%;
+left:-320px;
 
-transform:translateX(-50%);
+width:300px;
 
-width:320px;
+z-index:50;
 
-z-index:100;
+animation:driveCar 18s linear forwards;
 
-filter:
-
-drop-shadow(0 0 20px #49c8ff);
-
-animation:bounce 2s ease-in-out infinite;
+filter:drop-shadow(0 0 20px #59d4ff);
 
 }
 
-@keyframes bounce{
+@keyframes driveCar{
 
 0%{
 
-transform:translate(-50%,0);
+left:-320px;
 
 }
 
-50%{
+20%{
 
-transform:translate(-50%,-4px);
-
-}
-
-100%{
-
-transform:translate(-50%,0);
+left:15%;
 
 }
 
-/* ===========================
-HEADLIGHT
-=========================== */
+40%{
 
-.car::after{
-
-content:"";
-
-position:absolute;
-
-right:-100px;
-
-top:70px;
-
-width:140px;
-
-height:35px;
-
-background:linear-gradient(
-
-to right,
-
-rgba(255,255,200,.7),
-
-transparent
-
-);
-
-filter:blur(10px);
-
-}
-/* ===========================
-ROAD STATIONS
-=========================== */
-
-.station{
-
-position:relative;
-
-height:100vh;
-
-background:linear-gradient(#061425,#030812);
-
-overflow:hidden;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
+left:35%;
 
 }
 
-/* اللافتة */
-
-.board{
-
-position:absolute;
-
-right:-500px;
-
-width:340px;
-
-padding:25px;
-
-background:#6b4b2a;
-
-border:8px solid #a57a4b;
-
-border-radius:12px;
-
-text-align:center;
-
-font-size:30px;
-
-font-weight:bold;
-
-color:white;
-
-box-shadow:0 0 25px rgba(0,0,0,.5);
-
-}
-
-/* حركة اللافتة */
-
-.board.show{
-
-animation:boardMove 7s linear forwards;
-
-}
-
-@keyframes boardMove{
-
-0%{
-
-right:-450px;
-
-opacity:0;
-
-}
-
-10%{
-
-opacity:1;
-
-}
-
-45%{
-
-right:40%;
-
-transform:translateX(50%);
-
-}
-
-70%{
-
-right:40%;
-
-transform:translateX(50%);
-
-}
-
-100%{
-
-right:120%;
-
-opacity:0;
-
-}
-
-}
-
-/* أعمدة اللافتة */
-
-.board::before{
-
-content:"";
-
-position:absolute;
-
-left:45%;
-
-bottom:-90px;
-
-width:15px;
-
-height:90px;
-
-background:#8b5a2b;
-
-}
-
-.board::after{
-
-content:"";
-
-position:absolute;
+60%{
 
 left:55%;
 
-bottom:-90px;
+}
 
-width:15px;
+80%{
 
-height:90px;
-
-background:#8b5a2b;
+left:75%;
 
 }
-/* ===========================
-FOG
-=========================== */
 
-.drive::before{
+100%{
+
+left:110%;
+
+}
+
+}
+
+/* اهتزاز بسيط */
+
+.car{
+
+animation:
+driveCar 18s linear forwards,
+engine .25s infinite alternate;
+
+}
+
+@keyframes engine{
+
+from{
+
+transform:translateY(0);
+
+}
+
+to{
+
+transform:translateY(-2px);
+
+}
+
+}
+/* ==========================
+HEADLIGHT
+========================== */
+
+.car::before{
 
 content:"";
 
 position:absolute;
 
-left:-100%;
+right:-120px;
+
+top:70px;
+
+width:180px;
+
+height:40px;
+
+background:linear-gradient(
+90deg,
+rgba(255,255,180,.9),
+rgba(255,255,180,.4),
+transparent
+);
+
+filter:blur(12px);
+
+transform:skewX(-8deg);
+
+opacity:.9;
+
+}
+
+/* ==========================
+FOG
+========================== */
+
+#roadSection::before{
+
+content:"";
+
+position:absolute;
 
 bottom:120px;
+
+left:-100%;
 
 width:300%;
 
@@ -602,7 +510,7 @@ transparent
 
 filter:blur(20px);
 
-animation:fogMove 18s linear infinite;
+animation:fogMove 15s linear infinite;
 
 }
 
@@ -622,37 +530,129 @@ transform:translateX(-35%);
 
 }
 
-/* ===========================
-DESTINATION
-=========================== */
+/* ==========================
+STATIONS
+========================== */
 
-.destination{
+.station{
 
 position:relative;
 
-min-height:100vh;
-
-background:linear-gradient(#020812,#061b33);
+height:100vh;
 
 display:flex;
-
-flex-direction:column;
 
 justify-content:center;
 
 align-items:center;
 
-padding:120px 20px;
+background:linear-gradient(#041326,#071d38);
 
 overflow:hidden;
 
 }
 
-/* البحر */
+.board{
 
-.destination::after{
+width:360px;
+
+padding:25px;
+
+background:#6d4b27;
+
+border:8px solid #9e7744;
+
+border-radius:12px;
+
+color:white;
+
+font-size:30px;
+
+font-weight:bold;
+
+text-align:center;
+
+opacity:0;
+
+transform:translateX(250px);
+
+transition:1s;
+
+box-shadow:0 0 30px rgba(0,0,0,.5);
+
+}
+
+.board.show{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+.board::before{
 
 content:"";
+
+position:absolute;
+
+left:48%;
+
+bottom:-90px;
+
+width:14px;
+
+height:90px;
+
+background:#8a6034;
+
+}
+
+.board::after{
+
+content:"";
+
+position:absolute;
+
+left:58%;
+
+bottom:-90px;
+
+width:14px;
+
+height:90px;
+
+background:#8a6034;
+
+}
+
+/* ==========================
+DESTINATION
+========================== */
+
+#destination{
+
+position:relative;
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+background:linear-gradient(#041326,#000);
+
+padding:100px 20px;
+
+overflow:hidden;
+
+}
+
+.sea{
 
 position:absolute;
 
@@ -664,51 +664,25 @@ width:100%;
 
 height:180px;
 
-background:linear-gradient(#0b5f8a,#178fc8);
+background:linear-gradient(#0a6da0,#1ea5e9);
 
 opacity:.75;
 
 }
 
-/* العربية في النهاية */
-
-.car-end{
+.finalCar{
 
 width:300px;
 
-margin-bottom:40px;
+margin-bottom:30px;
+
+filter:drop-shadow(0 0 25px #59d4ff);
 
 z-index:5;
 
-filter:drop-shadow(0 0 25px #49c8ff);
-
-animation:arrive 2.5s ease;
-
 }
 
-@keyframes arrive{
-
-0%{
-
-transform:translateX(-500px);
-
-opacity:0;
-
-}
-
-100%{
-
-transform:translateX(0);
-
-opacity:1;
-
-}
-
-}
-
-/* الرسالة */
-
-.message{
+.finalBox{
 
 position:relative;
 
@@ -716,197 +690,60 @@ z-index:10;
 
 text-align:center;
 
-max-width:850px;
+max-width:800px;
 
 }
 
-.message h1{
+.finalBox h1{
 
-font-size:46px;
-
-color:#49c8ff;
+font-size:45px;
 
 margin-bottom:20px;
 
+color:#59d4ff;
+
 }
 
-.message h2{
+.finalBox h2{
 
-font-size:34px;
+font-size:32px;
 
-margin-bottom:25px;
+margin-bottom:20px;
 
 line-height:1.8;
 
 }
 
-.message p{
+.finalBox p{
 
-font-size:20px;
+font-size:22px;
+
+margin-bottom:35px;
 
 color:#ddd;
-
-margin-bottom:40px;
 
 }
 
 #restart{
 
-padding:16px 45px;
+padding:18px 45px;
 
 border:none;
 
-border-radius:40px;
+border-radius:50px;
 
-background:#49c8ff;
-
-color:#07131f;
+background:#59d4ff;
 
 font-size:20px;
 
 cursor:pointer;
 
-box-shadow:0 0 20px #49c8ff;
-
-transition:.4s;
+transition:.3s;
 
 }
 
 #restart:hover{
 
 transform:scale(1.08);
-
-box-shadow:0 0 35px #49c8ff;
-
-}
-/* ===========================
-FLOATING HEARTS
-=========================== */
-
-#hearts{
-
-position:fixed;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-pointer-events:none;
-
-overflow:hidden;
-
-z-index:999;
-
-}
-
-.heart{
-
-position:absolute;
-
-bottom:-50px;
-
-font-size:25px;
-
-animation:fly 6s linear forwards;
-
-}
-
-@keyframes fly{
-
-0%{
-
-transform:translateY(0) scale(.6);
-
-opacity:1;
-
-}
-
-100%{
-
-transform:translateY(-110vh) scale(1.5);
-
-opacity:0;
-
-}
-
-}
-
-/* ===========================
-STARS
-=========================== */
-
-.star{
-
-position:absolute;
-
-background:white;
-
-border-radius:50%;
-
-box-shadow:0 0 10px white;
-
-animation:blink 2s infinite alternate;
-
-}
-
-@keyframes blink{
-
-0%{
-
-opacity:.2;
-
-}
-
-100%{
-
-opacity:1;
-
-}
-
-}
-
-/* ===========================
-BUTTON EFFECT
-=========================== */
-
-button{
-
-transition:.35s;
-
-}
-
-button:hover{
-
-transform:scale(1.08);
-
-box-shadow:0 0 30px #49c8ff;
-
-}
-
-/* ===========================
-SCROLL BAR
-=========================== */
-
-::-webkit-scrollbar{
-
-width:8px;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-background:#49c8ff;
-
-border-radius:20px;
-
-}
-
-::-webkit-scrollbar-track{
-
-background:#02111d;
 
 }
