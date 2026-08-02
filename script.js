@@ -1,6 +1,6 @@
-// ===================================
+// ==========================
 // LOADING
-// ===================================
+// ==========================
 
 window.addEventListener("load", () => {
 
@@ -14,210 +14,150 @@ window.addEventListener("load", () => {
 
         }
 
-    }, 3000);
+    },3000);
 
 });
 
-// ===================================
+// ==========================
 // ELEMENTS
-// ===================================
+// ==========================
 
-const startBtn = document.getElementById("start");
-const restartBtn = document.getElementById("restart");
-const music = document.getElementById("music");
+const startBtn=document.getElementById("start");
+const restartBtn=document.getElementById("restart");
+const music=document.getElementById("music");
 
-const road = document.getElementById("roadSection");
+const road=document.getElementById("roadSection");
 
-// ===================================
+// ==========================
 // START
-// ===================================
+// ==========================
 
 if(startBtn){
 
-    startBtn.addEventListener("click",()=>{
+startBtn.addEventListener("click",()=>{
 
-        startBtn.style.display="none";
+    startBtn.style.display="none";
 
-        if(music){
+    if(music){
 
-            music.play().catch(()=>{});
+        music.play().catch(()=>{});
 
-        }
+    }
 
-        if(road){
+    road.scrollIntoView({
 
-            road.scrollIntoView({
-
-                behavior:"smooth"
-
-            });
-
-        }
-
-        setTimeout(showBoard,2000);
+        behavior:"smooth"
 
     });
 
-}
+    setTimeout(showBoard,1500);
 
-// ===================================
-// RESTART
-// ===================================
-
-if(restartBtn){
-
-    restartBtn.addEventListener("click",()=>{
-
-        if(music){
-
-            music.pause();
-
-            music.currentTime=0;
-
-        }
-
-        location.reload();
-
-    });
+});
 
 }
-// ===================================
+// ==========================
 // STARS
-// ===================================
+// ==========================
 
-const stars = document.getElementById("stars");
+const stars=document.getElementById("stars");
 
-if (stars) {
+if(stars){
 
-    for (let i = 0; i < 200; i++) {
+for(let i=0;i<180;i++){
 
-        const star = document.createElement("div");
+const star=document.createElement("div");
 
-        star.className = "star";
+star.className="star";
 
-        const size = Math.random() * 3 + 1;
+const size=Math.random()*3+1;
 
-        star.style.width = size + "px";
-        star.style.height = size + "px";
+star.style.width=size+"px";
+star.style.height=size+"px";
 
-        star.style.left = Math.random() * 100 + "%";
-        star.style.top = Math.random() * 100 + "%";
+star.style.left=Math.random()*100+"%";
+star.style.top=Math.random()*100+"%";
 
-        star.style.animationDelay = Math.random() * 2 + "s";
+star.style.animationDelay=Math.random()*2+"s";
 
-        stars.appendChild(star);
-
-    }
+stars.appendChild(star);
 
 }
 
-// ===================================
+}
+
+// ==========================
 // ROAD SIGNS
-// ===================================
+// ==========================
 
-const boards = document.querySelectorAll(".board");
+const boards=document.querySelectorAll(".board");
 
-let current = 0;
+let currentBoard=0;
 
-function showBoard() {
+function showBoard(){
 
-    if (current >= boards.length) {
+if(currentBoard>=boards.length){
 
-        return;
-
-    }
-
-    boards[current].classList.add("show");
-
-    setTimeout(() => {
-
-        boards[current].classList.remove("show");
-
-        current++;
-
-        setTimeout(showBoard, 1000);
-
-    }, 3000);
+return;
 
 }
-// ===================================
-// FLOATING HEARTS
-// ===================================
 
-const hearts = document.getElementById("hearts");
+boards[currentBoard].classList.add("show");
+
+setTimeout(()=>{
+
+boards[currentBoard].classList.remove("show");
+
+currentBoard++;
+
+setTimeout(showBoard,800);
+
+},5000);
+
+}
+// ==========================
+// HEARTS
+// ==========================
+
+const hearts=document.getElementById("hearts");
 
 function createHeart(){
 
-    if(!hearts) return;
+if(!hearts) return;
 
-    const heart=document.createElement("div");
+const heart=document.createElement("div");
 
-    heart.className="heart";
+heart.className="heart";
 
-    heart.innerHTML="❤️";
+heart.innerHTML="❤️";
 
-    heart.style.left=Math.random()*100+"vw";
+heart.style.left=Math.random()*100+"vw";
 
-    heart.style.fontSize=(20+Math.random()*20)+"px";
+heart.style.fontSize=(20+Math.random()*20)+"px";
 
-    hearts.appendChild(heart);
+hearts.appendChild(heart);
 
-    setTimeout(()=>{
+setTimeout(()=>{
 
-        heart.remove();
+heart.remove();
 
-    },6000);
-
-}
-
-setInterval(createHeart,1500);
-
-// ===================================
-// TYPEWRITER EFFECT
-// ===================================
-
-const finalText=document.querySelector(".finalBox h2");
-
-if(finalText){
-
-    const text=finalText.textContent;
-
-    finalText.textContent="";
-
-    let i=0;
-
-    function type(){
-
-        if(i<text.length){
-
-            finalText.textContent+=text.charAt(i);
-
-            i++;
-
-            setTimeout(type,70);
-
-        }
-
-    }
-
-    const observer=new IntersectionObserver((entries)=>{
-
-        entries.forEach(entry=>{
-
-            if(entry.isIntersecting){
-
-                type();
-
-                observer.disconnect();
-
-            }
-
-        });
-
-    });
-
-    observer.observe(finalText);
+},6000);
 
 }
 
-console.log("Website Loaded Successfully ❤️");
+setInterval(createHeart,1800);
+
+// ==========================
+// RESTART
+// ==========================
+
+if(restartBtn){
+
+restartBtn.addEventListener("click",()=>{
+
+location.reload();
+
+});
+
+}
+
+console.log("For Mo7amed ❤️");
