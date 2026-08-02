@@ -18,6 +18,18 @@ window.addEventListener("load", () => {
 
 const startBtn = document.getElementById("start");
 const restartBtn = document.getElementById("restart");
+
+if(restartBtn){
+    restartBtn.addEventListener("click", () => {
+        music.pause();
+        music.currentTime = 0;
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+    });
+}
 const music = document.getElementById("music");
 
 // ===========================
@@ -140,28 +152,12 @@ function createHeart(){
 // ===========================
 // Final Hearts
 // ===========================
+const destination = document.getElementById("destination");
 
-const destination=document.getElementById("destination");
-
-const finalObserver=new IntersectionObserver((entries)=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            for(let i=0;i<40;i++){
-
-                setTimeout(createHeart,i*150);
-
-            }
-
-        }
-
-    });
-
-});
-
-finalObserver.observe(destination);
+if(destination){
+    finalObserver.observe(destination);
+    typingObserver.observe(destination);
+}
 
 // ===========================
 // Typewriter Effect
