@@ -328,36 +328,27 @@ overflow:hidden;
 /* الخط الأبيض */
 
 .middleLine{
-
-position:absolute;
-
-top:50%;
-
-width:300%;
-
-height:8px;
-
-background:repeating-linear-gradient(
-90deg,
-white 0 70px,
-transparent 70px 140px
-);
-
-animation:roadMove .6s linear infinite;
-
+    position:absolute;
+    top:50%;
+    width:500%;
+    height:8px;
+    background:repeating-linear-gradient(
+        90deg,
+        white 0 80px,
+        transparent 80px 160px
+    );
+    animation:roadMove .45s linear infinite;
 }
 
 @keyframes roadMove{
 
-from{
+    from{
+        transform:translateX(0);
+    }
 
-transform:translateX(0);
-
-}
-
-to{
-
-transform:translateX(-220px);
+    to{
+        transform:translateX(-320px);
+    }
 
 }
 
@@ -485,60 +476,49 @@ transform:translateX(-35%);
 /* ==========================
 STATIONS
 ========================== */
-
 .station{
 
 position:relative;
 
-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-background:linear-gradient(#041326,#071d38);
+height:300px;
 
 overflow:hidden;
+
+background:#07182c;
 
 }
 
 .board{
 
-width:360px;
+position:absolute;
 
-padding:25px;
+right:-450px;
 
-background:#6d4b27;
+top:90px;
 
-border:8px solid #9e7744;
+width:320px;
+
+padding:20px;
+
+background:#7b552f;
+
+border:8px solid #a67c42;
 
 border-radius:12px;
 
-color:white;
-
-font-size:30px;
+font-size:28px;
 
 font-weight:bold;
 
 text-align:center;
 
-opacity:0;
-
-transform:translateX(250px);
-
-transition:1s;
-
-box-shadow:0 0 30px rgba(0,0,0,.5);
+transition:2s;
 
 }
 
 .board.show{
 
-opacity:1;
-
-transform:translateX(0);
+right:420px;
 
 }
 
