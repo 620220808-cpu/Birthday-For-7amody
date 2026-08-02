@@ -368,21 +368,13 @@ CAR
 ========================== */
 
 .car{
-
 position:absolute;
-
 bottom:85px;
-
-left:-320px;
-
+left:50px;
 width:300px;
-
-z-index:50;
-
-animation:driveCar 18s linear forwards;
-
+z-index:999;
+display:block;
 filter:drop-shadow(0 0 20px #59d4ff);
-
 }
 
 @keyframes driveCar{
