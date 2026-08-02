@@ -368,13 +368,11 @@ CAR
 ========================== */
 
 .car{
-    position: fixed;
-    bottom: 35px;
-    left: 50px;
-    width: 250px;
-    z-index: 999999;
-    display: block;
-    animation: none;
+    position:absolute;
+    bottom:25px;   /* جربي بين 20 و35 */
+    left:-300px;
+    width:250px;
+    z-index:999;
 }
 
 @keyframes driveCar{
@@ -500,8 +498,7 @@ rgba(255,255,255,.08),
 transparent
 );
 
-filter:blur(20px);
-
+filter: none;
 animation:fogMove 15s linear infinite;
 
 }
