@@ -1,31 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>For Mo7amed ❤️</title>
 
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 </head>
 
 <body>
 
-<!-- Loading Screen -->
+<!-- Loading -->
 
-<div id="loader">
+<div id="loading">
+
+<div class="loader">
 
 <h1>For Mo7amed ❤️</h1>
 
 <p>This Journey Was Made Only For You...</p>
 
+<div class="progress">
+
+<span></span>
+
 </div>
 
-<!-- Background Music -->
+</div>
+
+</div>
+
+<!-- Music -->
 
 <audio id="music" loop>
 
@@ -33,27 +51,29 @@
 
 </audio>
 
-<!-- Hero Section -->
+<!-- Hero -->
 
 <section class="hero">
 
 <div class="overlay">
 
-<h3>❤️ For Mo7amed</h3>
+<h3>❤️ Welcome Mo7amed ❤️</h3>
 
 <h1>Every Road Leads Back To You</h1>
 
 <p>
 
-"Some journeys are not about distance,
+Some journeys aren't measured by kilometers...
 
-but about the person you always carry in your heart."
+They're measured by feelings.
 
 </p>
 
-<button id="startBtn">
+<button id="start">
 
-Start The Journey ❤️
+<i class="fa-solid fa-car"></i>
+
+Start The Journey
 
 </button>
 
@@ -61,81 +81,139 @@ Start The Journey ❤️
 
 </section>
 
-<!-- Car -->
+<!-- Road -->
 
-<section class="carSection">
+<section id="road">
 
-<img src="images/fiat126.png" class="car" id="car">
+<div class="moon"></div>
+
+<div class="stars"></div>
+
+<div class="road"></div>
+
+<div class="road-lines"></div>
+
+<img
+src="images/fiat126.png"
+class="car"
+id="car">
 
 </section>
 
-<!-- Messages -->
+<!-- First Sign -->
 
-<section class="messages">
+<section class="sign">
 
-<div class="card hidden">
+<div class="board">
 
-اشتقتلك ❤️
+❤️ اشتقتلك ❤️
 
 </div>
 
-<div class="card hidden">
+</section>
+
+<!-- Second Sign -->
+
+<section class="sign">
+
+<div class="board">
 
 يمكن بعدنا...
 
 </div>
 
-<div class="card hidden">
+</section>
+
+<!-- Third Sign -->
+
+<section class="sign">
+
+<div class="board">
 
 لكن قلبي عمره ما بعد.
 
 </div>
 
-<div class="card hidden">
+</section>
+
+<!-- Fourth Sign -->
+
+<section class="sign">
+
+<div class="board">
 
 كل طريق مشيت فيه...
 
 </div>
 
-<div class="card hidden">
+</section>
+  <!-- Fifth Sign -->
 
-كان نفسي تكون معايا.
+<section class="sign">
 
-</div>
+    <div class="board">
+
+        كان نفسي تكون معايا.
+
+    </div>
 
 </section>
 
-<!-- Final -->
+<!-- Last Drive -->
 
-<section class="final">
+<section class="destination">
 
-<h1>
+    <div class="sky">
 
-يمكن الوقت غيّر تفاصيل كتير...
+        <div class="moon-big"></div>
 
-</h1>
+        <div class="stars2"></div>
 
-<h2>
+    </div>
 
-لكن مكانك في قلبي عمره ما اتغير. ❤️
+    <img src="images/fiat126.png"
+         class="last-car">
 
-</h2>
+    <div class="final-message">
 
-<p>
+        <h1>
 
-Thank You For Taking This Journey,
+            يمكن الوقت غيّر تفاصيل كتير...
 
-Mo7amed.
+        </h1>
 
-</p>
+        <h2>
 
-<button id="restart">
+            لكن مكانك في قلبي عمره ما اتغير ❤️
 
-Restart Our Journey ❤️
+        </h2>
 
-</button>
+        <p>
+
+            Thank You For Taking This Journey,
+            Mo7amed.
+
+        </p>
+
+        <button id="restart">
+
+            ❤️ Restart Our Journey ❤️
+
+        </button>
+
+    </div>
 
 </section>
+
+<!-- Floating Hearts -->
+
+<div id="hearts"></div>
+
+<!-- Stars -->
+
+<div id="stars"></div>
+
+<!-- Javascript -->
 
 <script src="script.js"></script>
 
