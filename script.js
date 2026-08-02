@@ -110,3 +110,93 @@ setInterval(() => {
     }, 2500);
 
 }, 500);
+// ===============================
+// Create Night Stars
+// ===============================
+
+const starsContainer = document.getElementById("stars");
+
+for(let i=0;i<150;i++){
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left = Math.random()*100+"%";
+    star.style.top = Math.random()*100+"%";
+
+    const size = Math.random()*3+1;
+
+    star.style.width = size+"px";
+    star.style.height = size+"px";
+
+    star.style.animationDelay = Math.random()*3+"s";
+
+    starsContainer.appendChild(star);
+
+}
+
+// ===============================
+// Floating Hearts
+// ===============================
+
+const hearts = document.getElementById("hearts");
+
+setInterval(()=>{
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random()*100+"vw";
+
+    heart.style.fontSize = (20 + Math.random()*25)+"px";
+
+    hearts.appendChild(heart);
+
+    setTimeout(()=>{
+
+        heart.remove();
+
+    },6000);
+
+},700);
+
+// ===============================
+// Car Engine Effect
+// ===============================
+
+const car = document.getElementById("car");
+
+setInterval(()=>{
+
+    car.style.transform = "translateX(-50%) translateY(-2px)";
+
+    setTimeout(()=>{
+
+        car.style.transform = "translateX(-50%) translateY(2px)";
+
+    },120);
+
+},240);
+
+// ===============================
+// Music
+// ===============================
+
+const startBtn = document.getElementById("startBtn");
+const music = document.getElementById("music");
+
+startBtn.addEventListener("click",()=>{
+
+    music.play();
+
+    document.querySelector(".drive").scrollIntoView({
+
+        behavior:"smooth"
+
+    });
+
+});
