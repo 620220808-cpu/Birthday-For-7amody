@@ -1,6 +1,6 @@
-// ===========================
-// Loading Screen
-// ===========================
+// ===================================
+// LOADING
+// ===================================
 
 window.addEventListener("load", () => {
 
@@ -9,79 +9,81 @@ window.addEventListener("load", () => {
         const loading = document.getElementById("loading");
 
         if (loading) {
+
             loading.style.display = "none";
+
         }
 
     }, 3000);
 
 });
 
-// ===========================
-// Elements
-// ===========================
+// ===================================
+// ELEMENTS
+// ===================================
 
 const startBtn = document.getElementById("start");
 const restartBtn = document.getElementById("restart");
 const music = document.getElementById("music");
 
-// ===========================
-// Start Button
-// ===========================
+const road = document.getElementById("roadSection");
 
-if (startBtn) {
+// ===================================
+// START
+// ===================================
 
-    startBtn.addEventListener("click", () => {
+if(startBtn){
 
-        if (music) {
-            music.play().catch(() => {});
+    startBtn.addEventListener("click",()=>{
+
+        startBtn.style.display="none";
+
+        if(music){
+
+            music.play().catch(()=>{});
+
         }
 
-        const road = document.getElementById("roadSection");
-
-        if (road) {
+        if(road){
 
             road.scrollIntoView({
 
-                behavior: "smooth"
+                behavior:"smooth"
 
             });
 
         }
 
+        setTimeout(showBoard,2000);
+
     });
 
 }
 
-// ===========================
-// Restart Button
-// ===========================
+// ===================================
+// RESTART
+// ===================================
 
-if (restartBtn) {
+if(restartBtn){
 
-    restartBtn.addEventListener("click", () => {
+    restartBtn.addEventListener("click",()=>{
 
-        if (music) {
+        if(music){
 
             music.pause();
 
-            music.currentTime = 0;
+            music.currentTime=0;
 
         }
 
-        window.scrollTo({
-
-            top: 0,
-
-            behavior: "smooth"
-
-        });
+        location.reload();
 
     });
 
 }
-// ===========================
-// Create Stars
-// ===========================
+// ===================================
+// STARS
+// ===================================
 
 const stars = document.getElementById("stars");
 
@@ -109,99 +111,104 @@ if (stars) {
 
 }
 
-// ===========================
-// Show Boards
-// ===========================
+// ===================================
+// ROAD SIGNS
+// ===================================
 
 const boards = document.querySelectorAll(".board");
 
-const observer = new IntersectionObserver((entries) => {
+let current = 0;
 
-    entries.forEach(entry => {
+function showBoard() {
 
-        if (entry.isIntersecting) {
+    if (current >= boards.length) {
 
-            entry.target.classList.add("show");
+        return;
 
-        }
+    }
 
-    });
-
-}, {
-
-    threshold: 0.5
-
-});
-
-boards.forEach(board => observer.observe(board));
-// ===========================
-// Floating Hearts
-// ===========================
-
-const heartsContainer = document.getElementById("hearts");
-
-function createHeart() {
-
-    if (!heartsContainer) return;
-
-    const heart = document.createElement("div");
-
-    heart.className = "heart";
-
-    heart.innerHTML = "❤️";
-
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (20 + Math.random() * 20) + "px";
-
-    heartsContainer.appendChild(heart);
+    boards[current].classList.add("show");
 
     setTimeout(() => {
 
+        boards[current].classList.remove("show");
+
+        current++;
+
+        setTimeout(showBoard, 1000);
+
+    }, 3000);
+
+}
+// ===================================
+// FLOATING HEARTS
+// ===================================
+
+const hearts = document.getElementById("hearts");
+
+function createHeart(){
+
+    if(!hearts) return;
+
+    const heart=document.createElement("div");
+
+    heart.className="heart";
+
+    heart.innerHTML="❤️";
+
+    heart.style.left=Math.random()*100+"vw";
+
+    heart.style.fontSize=(20+Math.random()*20)+"px";
+
+    hearts.appendChild(heart);
+
+    setTimeout(()=>{
+
         heart.remove();
 
-    }, 6000);
+    },6000);
 
 }
 
-// إنشاء قلب كل ثانية ونصف
-setInterval(createHeart, 1500);
+setInterval(createHeart,1500);
 
-// ===========================
-// Typewriter Effect
-// ===========================
+// ===================================
+// TYPEWRITER EFFECT
+// ===================================
 
-const finalTitle = document.querySelector(".finalBox h2");
+const finalText=document.querySelector(".finalBox h2");
 
-if (finalTitle) {
+if(finalText){
 
-    const text = finalTitle.textContent;
+    const text=finalText.textContent;
 
-    finalTitle.textContent = "";
+    finalText.textContent="";
 
-    let i = 0;
+    let i=0;
 
-    function typeWriter() {
+    function type(){
 
-        if (i < text.length) {
+        if(i<text.length){
 
-            finalTitle.textContent += text.charAt(i);
+            finalText.textContent+=text.charAt(i);
 
             i++;
 
-            setTimeout(typeWriter, 70);
+            setTimeout(type,70);
 
         }
 
     }
 
-    const typingObserver = new IntersectionObserver((entries) => {
+    const observer=new IntersectionObserver((entries)=>{
 
-        entries.forEach(entry => {
+        entries.forEach(entry=>{
 
-            if (entry.isIntersecting) {
+            if(entry.isIntersecting){
 
-                typeWriter();
-                typingObserver.disconnect();
+                type();
+
+                observer.disconnect();
 
             }
 
@@ -209,8 +216,8 @@ if (finalTitle) {
 
     });
 
-    typingObserver.observe(finalTitle);
+    observer.observe(finalText);
 
 }
 
-console.log("For Mo7amed ❤️ Loaded Successfully"); 
+console.log("Website Loaded Successfully ❤️");
