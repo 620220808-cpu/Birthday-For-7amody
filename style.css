@@ -376,53 +376,23 @@ CAR
 }
 
 @keyframes driveCar{
+    0%{
+        transform: translateX(-350px);
+    }
 
-0%{
-
-left:-320px;
-
-}
-
-20%{
-
-left:15%;
-
-}
-
-40%{
-
-left:35%;
-
-}
-
-60%{
-
-left:55%;
-
-}
-
-80%{
-
-left:75%;
-
-}
-
-100%{
-
-left:110%;
-
-}
-
+    100%{
+        transform: translateX(calc(100vw + 350px));
+    }
 }
 
 /* اهتزاز بسيط */
 
 .car{
-
-animation:
-driveCar 18s linear forwards,
-engine .25s infinite alternate;
-
+    position:absolute;
+    bottom:95px;
+    left:0;
+    width:300px;
+    z-index:999;
 }
 
 @keyframes engine{
