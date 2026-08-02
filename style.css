@@ -15,7 +15,7 @@ html{
 
 body{
     background:#020812;
-    color:white;
+    color:#fff;
     overflow-x:hidden;
 }
 
@@ -27,6 +27,7 @@ LOADING
 
     position:fixed;
     inset:0;
+
     background:#020812;
 
     display:flex;
@@ -34,7 +35,7 @@ LOADING
     align-items:center;
     flex-direction:column;
 
-    z-index:9999;
+    z-index:99999;
 
 }
 
@@ -60,7 +61,7 @@ LOADING
 
     background:#333;
 
-    border-radius:30px;
+    border-radius:20px;
 
     overflow:hidden;
 
@@ -80,55 +81,49 @@ LOADING
 @keyframes loading{
 
     from{
+
         width:0;
+
     }
 
     to{
+
         width:100%;
+
     }
 
 }
 
 /* ==========================
-HERO
+HOME
 ========================== */
 
 .hero{
 
     height:100vh;
 
-    background:linear-gradient(#02152c,#000);
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
     text-align:center;
 
-}
-
-.overlay{
-
-    max-width:700px;
-
-    padding:20px;
+    background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url("images/night.jpg") center/cover no-repeat;
 
 }
 
 .overlay h3{
 
     color:#59d4ff;
-
     font-size:30px;
 
 }
 
 .overlay h1{
 
-    font-size:65px;
-
+    font-size:70px;
     margin:20px 0;
 
 }
@@ -147,7 +142,7 @@ HERO
 
     border:none;
 
-    border-radius:50px;
+    border-radius:40px;
 
     font-size:20px;
 
@@ -178,7 +173,7 @@ ROAD SECTION
 
     overflow:hidden;
 
-    background:linear-gradient(#041326,#000);
+    background:linear-gradient(#06142b,#000);
 
 }
 
@@ -208,10 +203,10 @@ SKY
 
     border-radius:50%;
 
-    background:white;
+    background:#fff;
 
     box-shadow:
-    0 0 30px white,
+    0 0 40px white,
     0 0 80px white;
 
 }
@@ -234,9 +229,9 @@ SKY
 
     height:3px;
 
-    background:white;
-
     border-radius:50%;
+
+    background:white;
 
     animation:twinkle 2s infinite alternate;
 
@@ -266,19 +261,53 @@ ROAD
 
     position:absolute;
 
+    left:0;
+
     bottom:0;
 
     width:100%;
 
     height:220px;
 
-    background:#303030;
+    background:#333;
 
     overflow:hidden;
 
 }
 
-.middleLine{
+.road::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    width:100%;
+
+    height:8px;
+
+    background:#fff;
+
+}
+
+.road::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:0;
+
+    width:100%;
+
+    height:8px;
+
+    background:#fff;
+
+}
+
+.roadLine{
 
     position:absolute;
 
@@ -289,16 +318,12 @@ ROAD
     height:8px;
 
     background:repeating-linear-gradient(
-
         90deg,
-
-        white 0 80px,
-
+        #fff 0 80px,
         transparent 80px 160px
-
     );
 
-    animation:roadMove .45s linear infinite;
+    animation:roadMove .5s linear infinite;
 
 }
 
@@ -326,11 +351,11 @@ CAR
 
     position:absolute;
 
-    width:280px;
+    left:140px;
 
     bottom:45px;
 
-    left:120px;
+    width:260px;
 
     z-index:100;
 
@@ -353,9 +378,9 @@ ROAD SIGNS
 
     height:180px;
 
-    pointer-events:none;
-
     overflow:hidden;
+
+    pointer-events:none;
 
 }
 
@@ -363,29 +388,27 @@ ROAD SIGNS
 
     position:absolute;
 
-    left:110%;
+    right:-400px;
 
     bottom:0;
 
-    width:300px;
+    width:260px;
 
-    padding:18px;
+    padding:15px;
 
-    background:#1d8b3d;
+    background:#198754;
 
-    color:white;
+    color:#fff;
 
-    font-size:24px;
+    border:6px solid #ddd;
 
-    font-weight:bold;
+    border-radius:8px;
 
     text-align:center;
 
-    border:8px solid #dcdcdc;
+    font-size:22px;
 
-    border-radius:10px;
-
-    box-shadow:0 10px 20px rgba(0,0,0,.4);
+    font-weight:bold;
 
     opacity:0;
 
@@ -403,13 +426,13 @@ ROAD SIGNS
 
     height:90px;
 
-    background:#b0b0b0;
+    background:#b5b5b5;
 
     left:50%;
 
-    transform:translateX(-50%);
-
     top:100%;
+
+    transform:translateX(-50%);
 
 }
 
@@ -417,15 +440,15 @@ ROAD SIGNS
 
 .board.show{
 
-    animation:moveSign 6s linear forwards;
+    animation:signMove 6s linear forwards;
 
 }
 
-@keyframes moveSign{
+@keyframes signMove{
 
     0%{
 
-        left:110%;
+        right:-350px;
 
         opacity:0;
 
@@ -439,29 +462,20 @@ ROAD SIGNS
 
     45%{
 
-        left:55%;
-
-        opacity:1;
-
-    }
-
-    70%{
-
-        left:35%;
-
-        opacity:1;
+        right:260px;
 
     }
 
     100%{
 
-        left:-350px;
+        right:120%;
 
         opacity:0;
 
     }
 
 }
+
 /* ==========================
 DESTINATION
 ========================== */
@@ -470,7 +484,7 @@ DESTINATION
 
     position:relative;
 
-    min-height:100vh;
+    height:100vh;
 
     display:flex;
 
@@ -478,11 +492,11 @@ DESTINATION
 
     align-items:center;
 
+    flex-direction:column;
+
     text-align:center;
 
-    background:linear-gradient(#03152b,#001018);
-
-    overflow:hidden;
+    background:linear-gradient(#041326,#000);
 
 }
 
@@ -498,35 +512,7 @@ DESTINATION
 
     height:220px;
 
-    background:linear-gradient(
-        to bottom,
-        #2ca8ff,
-        #006bb3
-    );
-
-    animation:seaMove 4s ease-in-out infinite;
-
-}
-
-@keyframes seaMove{
-
-    0%{
-
-        transform:translateY(0);
-
-    }
-
-    50%{
-
-        transform:translateY(-8px);
-
-    }
-
-    100%{
-
-        transform:translateY(0);
-
-    }
+    background:linear-gradient(#29a9ff,#005d96);
 
 }
 
@@ -536,17 +522,13 @@ DESTINATION
 
     z-index:10;
 
-    max-width:750px;
-
-    padding:30px;
+    max-width:700px;
 
 }
 
 .finalBox h1{
 
-    font-size:60px;
-
-    color:#59d4ff;
+    font-size:55px;
 
     margin-bottom:20px;
 
@@ -554,7 +536,7 @@ DESTINATION
 
 .finalBox h2{
 
-    font-size:34px;
+    font-size:30px;
 
     line-height:1.8;
 
@@ -562,17 +544,11 @@ DESTINATION
 
 }
 
-.finalBox p{
-
-    font-size:24px;
-
-    margin-bottom:30px;
-
-}
-
 #restart{
 
-    padding:18px 45px;
+    margin-top:20px;
+
+    padding:16px 40px;
 
     border:none;
 
@@ -582,20 +558,11 @@ DESTINATION
 
     color:#02152c;
 
-    cursor:pointer;
-
     font-size:20px;
 
-    transition:.3s;
+    cursor:pointer;
 
 }
-
-#restart:hover{
-
-    transform:scale(1.08);
-
-}
-
 /* ==========================
 HEARTS
 ========================== */
@@ -616,28 +583,78 @@ HEARTS
 
     position:absolute;
 
-    bottom:-50px;
+    bottom:-40px;
 
-    animation:heartFly 6s linear forwards;
+    animation:heartUp 6s linear forwards;
 
 }
 
-@keyframes heartFly{
+@keyframes heartUp{
 
-    from{
+    0%{
 
-        transform:translateY(0) rotate(0deg);
+        transform:translateY(0) scale(1);
 
         opacity:1;
 
     }
 
-    to{
+    100%{
 
-        transform:translateY(-120vh) rotate(360deg);
+        transform:translateY(-120vh) scale(1.5);
 
         opacity:0;
 
     }
+
+}
+
+/* ==========================
+RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+.overlay h1{
+
+    font-size:42px;
+
+}
+
+.overlay p{
+
+    font-size:18px;
+
+}
+
+.car{
+
+    width:170px;
+
+    left:40px;
+
+    bottom:35px;
+
+}
+
+.board{
+
+    width:180px;
+
+    font-size:16px;
+
+}
+
+.finalBox h1{
+
+    font-size:36px;
+
+}
+
+.finalBox h2{
+
+    font-size:22px;
+
+}
 
 }
