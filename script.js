@@ -1,6 +1,6 @@
-// ===============================
-// LOADING
-// ===============================
+// ===========================
+// Loading Screen
+// ===========================
 
 window.addEventListener("load", () => {
 
@@ -12,158 +12,120 @@ window.addEventListener("load", () => {
 
 });
 
-// ===============================
-// ELEMENTS
-// ===============================
+// ===========================
+// Elements
+// ===========================
 
 const startBtn = document.getElementById("start");
 const restartBtn = document.getElementById("restart");
 const music = document.getElementById("music");
-const car = document.getElementById("car");
 
-// ===============================
-// START JOURNEY
-// ===============================
+// ===========================
+// Start Journey
+// ===========================
 
 startBtn.addEventListener("click", () => {
 
     // تشغيل الأغنية
-    music.play();
+    music.play().catch(() => {});
 
     // النزول للطريق
     document.getElementById("roadSection").scrollIntoView({
-
         behavior: "smooth"
-
     });
 
-    // تشغيل حركة العربية
+});
+
+// ===========================
+// Restart
+// ===========================
+
+restartBtn.addEventListener("click", () => {
+
+    music.pause();
+    music.currentTime = 0;
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+// ===========================
+// Create Stars
+// ===========================
+
+const stars = document.getElementById("stars");
+
+for(let i=0;i<200;i++){
+
+    const star=document.createElement("div");
+
+    star.className="star";
+
+    const size=Math.random()*3+1;
+
+    star.style.width=size+"px";
+    star.style.height=size+"px";
+
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*100+"%";
+
+    star.style.animationDelay=Math.random()*2+"s";
+
+    stars.appendChild(star);
+
+}
+// ===========================
+// Show Boards One By One
+// ===========================
+
 const boards = document.querySelectorAll(".board");
 
-let i = 0;
+let currentBoard = 0;
 
-function nextBoard(){
+function showNextBoard(){
 
-    if(i>=boards.length) return;
+    if(currentBoard >= boards.length) return;
 
-    boards[i].classList.add("show");
+    boards[currentBoard].classList.add("show");
 
     setTimeout(()=>{
 
-        boards[i].classList.remove("show");
+        boards[currentBoard].classList.remove("show");
 
-        i++;
+        currentBoard++;
 
-        nextBoard();
+        showNextBoard();
 
     },3000);
 
 }
 
-setTimeout(nextBoard,1500);
-});
+startBtn.addEventListener("click",()=>{
 
-// ===============================
-// RESTART
-// ===============================
-
-restartBtn.addEventListener("click", () => {
-
-    music.currentTime = 0;
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
+    setTimeout(showNextBoard,2000);
 
 });
 
-// ===============================
-// STARS
-// ===============================
-
-const stars = document.getElementById("stars");
-
-for (let i = 0; i < 200; i++) {
-
-    const star = document.createElement("div");
-
-    star.className = "star";
-
-    const size = Math.random() * 3 + 1;
-
-    star.style.width = size + "px";
-    star.style.height = size + "px";
-
-    star.style.left = Math.random() * 100 + "%";
-    star.style.top = Math.random() * 100 + "%";
-
-    star.style.animationDelay = Math.random() * 2 + "s";
-
-    stars.appendChild(star);
-
-}
-// ===============================
-// Show Road Signs
-// ===============================
-
-const car = document.getElementById("car");
-const boards = document.querySelectorAll(".board");
-
-function checkBoards() {
-    const carX = car.getBoundingClientRect().left;
-
-    boards.forEach(board => {
-        const boardX = board.getBoundingClientRect().left;
-
-        if (Math.abs(carX - boardX) < 150) {
-            board.classList.add("show");
-        }
-    });
-
-    requestAnimationFrame(checkBoards);
-}
-
-checkBoards();
-const observer = new IntersectionObserver((entries)=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            entry.target.classList.add("show");
-
-        }
-
-    });
-
-},{
-    threshold:0.5
-});
-
-boards.forEach(board=>observer.observe(board));
-
-
-// ===============================
+// ===========================
 // Floating Hearts
-// ===============================
+// ===========================
 
 const hearts = document.getElementById("hearts");
 
 function createHeart(){
 
-    const heart = document.createElement("div");
+    const heart=document.createElement("div");
 
-    heart.className = "heart";
+    heart.className="heart";
 
-    heart.innerHTML = "❤️";
+    heart.innerHTML="❤️";
 
-    heart.style.left = Math.random()*100 + "vw";
+    heart.style.left=Math.random()*100+"vw";
 
-    heart.style.fontSize = (20 + Math.random()*20) + "px";
+    heart.style.fontSize=(20+Math.random()*20)+"px";
 
     hearts.appendChild(heart);
 
@@ -175,20 +137,19 @@ function createHeart(){
 
 }
 
-
-// ===============================
+// ===========================
 // Final Hearts
-// ===============================
+// ===========================
 
-const destination = document.getElementById("destination");
+const destination=document.getElementById("destination");
 
-const finalObserver = new IntersectionObserver((entries)=>{
+const finalObserver=new IntersectionObserver((entries)=>{
 
     entries.forEach(entry=>{
 
         if(entry.isIntersecting){
 
-            for(let i=0;i<50;i++){
+            for(let i=0;i<40;i++){
 
                 setTimeout(createHeart,i*150);
 
@@ -202,24 +163,23 @@ const finalObserver = new IntersectionObserver((entries)=>{
 
 finalObserver.observe(destination);
 
-
-// ===============================
+// ===========================
 // Typewriter Effect
-// ===============================
+// ===========================
 
-const title = document.querySelector(".finalBox h2");
+const title=document.querySelector(".finalBox h2");
 
-const originalText = title.innerHTML;
+const originalText=title.textContent;
 
-title.innerHTML = "";
+title.textContent="";
 
-let index = 0;
+let index=0;
 
 function typeWriter(){
 
-    if(index < originalText.length){
+    if(index<originalText.length){
 
-        title.innerHTML += originalText.charAt(index);
+        title.textContent+=originalText.charAt(index);
 
         index++;
 
@@ -229,7 +189,7 @@ function typeWriter(){
 
 }
 
-const typingObserver = new IntersectionObserver((entries)=>{
+const typingObserver=new IntersectionObserver((entries)=>{
 
     entries.forEach(entry=>{
 
@@ -245,13 +205,8 @@ const typingObserver = new IntersectionObserver((entries)=>{
 
 typingObserver.observe(destination);
 
+// ===========================
+// End
+// ===========================
 
-// ===============================
-// Car Click ❤️
-// ===============================
-
-car.addEventListener("click",()=>{
-
-    alert("❤️ وحشتني ❤️");
-
-});
+console.log("For Mo7amed ❤️ Loaded Successfully");
