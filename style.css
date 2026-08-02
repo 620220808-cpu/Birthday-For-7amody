@@ -150,78 +150,53 @@ ROAD
 ========================== */
 
 #roadSection{
-
-    position:relative;
-
-    height:100vh;
-
-    overflow:hidden;
-
-    background:linear-gradient(#02152c,#000);
-
-}
-
-.sky{
-
-    position:absolute;
-    inset:0;
-
-}
-
-.moon{
+#signs{
 
     position:absolute;
 
-    top:70px;
-    right:80px;
+    bottom:180px;
 
-    width:120px;
-    height:120px;
-
-    border-radius:50%;
-
-    background:white;
-
-    box-shadow:
-    0 0 30px white,
-    0 0 80px white;
-
-}
-
-#stars{
-
-    position:absolute;
+    right:0;
 
     width:100%;
-    height:100%;
+
+    height:200px;
+
+    pointer-events:none;
 
 }
 
-.star{
+.board{
 
     position:absolute;
 
-    background:white;
+    right:-500px;
 
-    border-radius:50%;
+    bottom:0;
 
-    animation:twinkle 2s infinite alternate;
+    width:280px;
+
+    padding:20px;
+
+    background:#2e8b57;
+
+    color:white;
+
+    border:5px solid white;
+
+    border-radius:10px;
+
+    text-align:center;
+
+    font-size:26px;
+
+    transition:all 2s linear;
 
 }
 
-@keyframes twinkle{
+.board.show{
 
-    from{
-
-        opacity:.3;
-
-    }
-
-    to{
-
-        opacity:1;
-
-    }
+    right:420px;
 
 }
 /* ==========================
