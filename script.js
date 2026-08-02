@@ -6,7 +6,11 @@ window.addEventListener("load", () => {
 
     setTimeout(() => {
 
-        document.getElementById("loading").style.display = "none";
+        const loading = document.getElementById("loading");
+
+        if (loading) {
+            loading.style.display = "none";
+        }
 
     }, 3000);
 
@@ -21,192 +25,192 @@ const restartBtn = document.getElementById("restart");
 const music = document.getElementById("music");
 
 // ===========================
-// Start Journey
+// Start Button
 // ===========================
 
-startBtn.addEventListener("click", () => {
+if (startBtn) {
 
-    // تشغيل الأغنية
-    music.play().catch(() => {});
+    startBtn.addEventListener("click", () => {
 
-    // النزول للطريق
-    document.getElementById("roadSection").scrollIntoView({
-        behavior: "smooth"
+        if (music) {
+            music.play().catch(() => {});
+        }
+
+        const road = document.getElementById("roadSection");
+
+        if (road) {
+
+            road.scrollIntoView({
+
+                behavior: "smooth"
+
+            });
+
+        }
+
     });
 
-});
+}
 
 // ===========================
-// Restart
+// Restart Button
 // ===========================
 
-restartBtn.addEventListener("click", () => {
+if (restartBtn) {
 
-    music.pause();
-    music.currentTime = 0;
+    restartBtn.addEventListener("click", () => {
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+        if (music) {
+
+            music.pause();
+
+            music.currentTime = 0;
+
+        }
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
     });
 
-});
-
+}
 // ===========================
 // Create Stars
 // ===========================
 
 const stars = document.getElementById("stars");
 
-for(let i=0;i<200;i++){
+if (stars) {
 
-    const star=document.createElement("div");
+    for (let i = 0; i < 200; i++) {
 
-    star.className="star";
+        const star = document.createElement("div");
 
-    const size=Math.random()*3+1;
+        star.className = "star";
 
-    star.style.width=size+"px";
-    star.style.height=size+"px";
+        const size = Math.random() * 3 + 1;
 
-    star.style.left=Math.random()*100+"%";
-    star.style.top=Math.random()*100+"%";
+        star.style.width = size + "px";
+        star.style.height = size + "px";
 
-    star.style.animationDelay=Math.random()*2+"s";
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
 
-    stars.appendChild(star);
+        star.style.animationDelay = Math.random() * 2 + "s";
 
-}
-// ===========================
-// Show Boards One By One
-// ===========================
-
-const boards = document.querySelectorAll(".board");
-
-let currentBoard = 0;
-
-function showNextBoard(){
-
-    if(currentBoard >= boards.length) return;
-
-    boards[currentBoard].classList.add("show");
-
-    setTimeout(()=>{
-
-        boards[currentBoard].classList.remove("show");
-
-        currentBoard++;
-
-        showNextBoard();
-
-    },3000);
-
-}
-
-startBtn.addEventListener("click",()=>{
-
-    setTimeout(showNextBoard,2000);
-
-});
-
-// ===========================
-// Floating Hearts
-// ===========================
-
-const hearts = document.getElementById("hearts");
-
-function createHeart(){
-
-    const heart=document.createElement("div");
-
-    heart.className="heart";
-
-    heart.innerHTML="❤️";
-
-    heart.style.left=Math.random()*100+"vw";
-
-    heart.style.fontSize=(20+Math.random()*20)+"px";
-
-    hearts.appendChild(heart);
-
-    setTimeout(()=>{
-
-        heart.remove();
-
-    },6000);
-
-}
-
-// ===========================
-// Final Hearts
-// ===========================
-
-const destination=document.getElementById("destination");
-
-const finalObserver=new IntersectionObserver((entries)=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            for(let i=0;i<40;i++){
-
-                setTimeout(createHeart,i*150);
-
-            }
-
-        }
-
-    });
-
-});
-
-finalObserver.observe(destination);
-
-// ===========================
-// Typewriter Effect
-// ===========================
-
-const title=document.querySelector(".finalBox h2");
-
-const originalText=title.textContent;
-
-title.textContent="";
-
-let index=0;
-
-function typeWriter(){
-
-    if(index<originalText.length){
-
-        title.textContent+=originalText.charAt(index);
-
-        index++;
-
-        setTimeout(typeWriter,70);
+        stars.appendChild(star);
 
     }
 
 }
 
-const typingObserver=new IntersectionObserver((entries)=>{
+// ===========================
+// Show Boards
+// ===========================
 
-    entries.forEach(entry=>{
+const boards = document.querySelectorAll(".board");
 
-        if(entry.isIntersecting){
+const observer = new IntersectionObserver((entries) => {
 
-            typeWriter();
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.classList.add("show");
 
         }
 
     });
 
+}, {
+
+    threshold: 0.5
+
 });
 
-typingObserver.observe(destination);
+boards.forEach(board => observer.observe(board));
+// ===========================
+// Floating Hearts
+// ===========================
+
+const heartsContainer = document.getElementById("hearts");
+
+function createHeart() {
+
+    if (!heartsContainer) return;
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+
+    heartsContainer.appendChild(heart);
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 6000);
+
+}
+
+// إنشاء قلب كل ثانية ونصف
+setInterval(createHeart, 1500);
 
 // ===========================
-// End
+// Typewriter Effect
 // ===========================
 
-console.log("For Mo7amed ❤️ Loaded Successfully");
+const finalTitle = document.querySelector(".finalBox h2");
+
+if (finalTitle) {
+
+    const text = finalTitle.textContent;
+
+    finalTitle.textContent = "";
+
+    let i = 0;
+
+    function typeWriter() {
+
+        if (i < text.length) {
+
+            finalTitle.textContent += text.charAt(i);
+
+            i++;
+
+            setTimeout(typeWriter, 70);
+
+        }
+
+    }
+
+    const typingObserver = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                typeWriter();
+                typingObserver.disconnect();
+
+            }
+
+        });
+
+    });
+
+    typingObserver.observe(finalTitle);
+
+}
+
+console.log("For Mo7amed ❤️ Loaded Successfully"); 
