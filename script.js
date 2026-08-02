@@ -38,8 +38,29 @@ startBtn.addEventListener("click", () => {
     });
 
     // تشغيل حركة العربية
-    car.classList.add("start-drive");
+const boards = document.querySelectorAll(".board");
 
+let i = 0;
+
+function nextBoard(){
+
+    if(i>=boards.length) return;
+
+    boards[i].classList.add("show");
+
+    setTimeout(()=>{
+
+        boards[i].classList.remove("show");
+
+        i++;
+
+        nextBoard();
+
+    },3000);
+
+}
+
+setTimeout(nextBoard,1500);
 });
 
 // ===============================
@@ -89,8 +110,24 @@ for (let i = 0; i < 200; i++) {
 // Show Road Signs
 // ===============================
 
+const car = document.getElementById("car");
 const boards = document.querySelectorAll(".board");
 
+function checkBoards() {
+    const carX = car.getBoundingClientRect().left;
+
+    boards.forEach(board => {
+        const boardX = board.getBoundingClientRect().left;
+
+        if (Math.abs(carX - boardX) < 150) {
+            board.classList.add("show");
+        }
+    });
+
+    requestAnimationFrame(checkBoards);
+}
+
+checkBoards();
 const observer = new IntersectionObserver((entries)=>{
 
     entries.forEach(entry=>{
