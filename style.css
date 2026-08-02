@@ -375,14 +375,7 @@ CAR
     z-index:999;
 }
 
-@keyframes driveCar{
-    0%{
-        transform: translateX(-350px);
-    }
 
-    100%{
-        transform: translateX(calc(100vw + 350px));
-    }
 }
 
 /* اهتزاز بسيط */
