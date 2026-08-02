@@ -1,132 +1,135 @@
-// ==========================
-// Loading
-// ==========================
+// ===========================
+// Loading Screen
+// ===========================
 
-window.addEventListener("load",()=>{
+window.addEventListener("load", () => {
 
-setTimeout(()=>{
+    setTimeout(() => {
 
-document.getElementById("loading").style.display="none";
+        document.getElementById("loading").style.display = "none";
 
-},3000);
+    }, 3000);
 
 });
 
-// ==========================
+// ===========================
 // Elements
-// ==========================
+// ===========================
 
-const start=document.getElementById("start");
-const music=document.getElementById("music");
-const restart=document.getElementById("restart");
+const startBtn = document.getElementById("start");
+const restartBtn = document.getElementById("restart");
+const music = document.getElementById("music");
 
-// ==========================
+// ===========================
 // Start Journey
-// ==========================
+// ===========================
 
-start.addEventListener("click",()=>{
+startBtn.addEventListener("click", () => {
 
-music.play().catch(()=>{});
+    // تشغيل الأغنية
+    music.play().catch(() => {});
 
-document.getElementById("roadSection").scrollIntoView({
-
-behavior:"smooth"
-
-});
-
-setTimeout(showBoard,1500);
+    // النزول للطريق
+    document.getElementById("roadSection").scrollIntoView({
+        behavior: "smooth"
+    });
 
 });
 
-// ==========================
+// ===========================
 // Restart
-// ==========================
+// ===========================
 
-restart.addEventListener("click",()=>{
+restartBtn.addEventListener("click", () => {
 
-location.reload();
+    music.pause();
+    music.currentTime = 0;
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 });
-// ==========================
-// STARS
-// ==========================
+
+// ===========================
+// Create Stars
+// ===========================
 
 const stars = document.getElementById("stars");
 
-if (stars) {
+for(let i=0;i<200;i++){
 
-    for (let i = 0; i < 200; i++) {
+    const star=document.createElement("div");
 
-        const star = document.createElement("div");
+    star.className="star";
 
-        star.className = "star";
+    const size=Math.random()*3+1;
 
-        const size = Math.random() * 3 + 1;
+    star.style.width=size+"px";
+    star.style.height=size+"px";
 
-        star.style.width = size + "px";
-        star.style.height = size + "px";
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*100+"%";
 
-        star.style.left = Math.random() * 100 + "%";
-        star.style.top = Math.random() * 100 + "%";
+    star.style.animationDelay=Math.random()*2+"s";
 
-        star.style.animationDelay = Math.random() * 2 + "s";
-
-        stars.appendChild(star);
-
-    }
+    stars.appendChild(star);
 
 }
-
-// ==========================
-// ROAD SIGNS
-// ==========================
+// ===========================
+// Show Boards One By One
+// ===========================
 
 const boards = document.querySelectorAll(".board");
 
-let current = 0;
+let currentBoard = 0;
 
-function showBoard() {
+function showNextBoard(){
 
-    if (current >= boards.length) {
+    if(currentBoard >= boards.length) return;
 
-        return;
+    boards[currentBoard].classList.add("show");
 
-    }
+    setTimeout(()=>{
 
-    boards[current].classList.add("show");
+        boards[currentBoard].classList.remove("show");
 
-    setTimeout(() => {
+        currentBoard++;
 
-        boards[current].classList.remove("show");
+        showNextBoard();
 
-        current++;
-
-        setTimeout(showBoard,800);
-
-    },5000);
+    },3000);
 
 }
-// ==========================
-// HEARTS
-// ==========================
+
+startBtn.addEventListener("click",()=>{
+
+    setTimeout(showNextBoard,2000);
+
+});
+
+// ===========================
+// Floating Hearts
+// ===========================
 
 const hearts = document.getElementById("hearts");
 
-function createHeart() {
+function createHeart(){
 
-    const heart = document.createElement("div");
+    const heart=document.createElement("div");
 
-    heart.className = "heart";
+    heart.className="heart";
 
-    heart.innerHTML = "❤️";
+    heart.innerHTML="❤️";
 
-    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.left=Math.random()*100+"vw";
 
-    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+    heart.style.fontSize=(20+Math.random()*20)+"px";
 
     hearts.appendChild(heart);
 
-    setTimeout(() => {
+    setTimeout(()=>{
 
         heart.remove();
 
@@ -134,6 +137,76 @@ function createHeart() {
 
 }
 
-setInterval(createHeart,1800);
+// ===========================
+// Final Hearts
+// ===========================
 
-console.log("For Mo7amed ❤️ Loaded");
+const destination=document.getElementById("destination");
+
+const finalObserver=new IntersectionObserver((entries)=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            for(let i=0;i<40;i++){
+
+                setTimeout(createHeart,i*150);
+
+            }
+
+        }
+
+    });
+
+});
+
+finalObserver.observe(destination);
+
+// ===========================
+// Typewriter Effect
+// ===========================
+
+const title=document.querySelector(".finalBox h2");
+
+const originalText=title.textContent;
+
+title.textContent="";
+
+let index=0;
+
+function typeWriter(){
+
+    if(index<originalText.length){
+
+        title.textContent+=originalText.charAt(index);
+
+        index++;
+
+        setTimeout(typeWriter,70);
+
+    }
+
+}
+
+const typingObserver=new IntersectionObserver((entries)=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            typeWriter();
+
+        }
+
+    });
+
+});
+
+typingObserver.observe(destination);
+
+// ===========================
+// End
+// ===========================
+
+console.log("For Mo7amed ❤️ Loaded Successfully");
