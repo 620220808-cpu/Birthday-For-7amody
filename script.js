@@ -30,20 +30,23 @@ const music = document.getElementById("music");
 
 if (startBtn) {
 
-    startBtn.addEventListener("click", () => {
+   startBtn.addEventListener("click", () => {
 
-        if (music) {
-            music.play().catch(() => {});
-        }
+    startBtn.style.display = "none";
 
-        const road = document.getElementById("roadSection");
+    if (music) {
+        music.play().catch(() => {});
+    }
 
-        if (road) {
+    const road = document.getElementById("roadSection");
 
-            road.scrollIntoView({
+    if (road) {
+        road.scrollIntoView({
+            behavior: "smooth"
+        });
+    }
 
-                behavior: "smooth"
-
+});
             });
 
         }
