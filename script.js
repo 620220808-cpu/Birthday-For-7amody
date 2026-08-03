@@ -25,59 +25,78 @@ const restartBtn = document.getElementById("restart");
 const music = document.getElementById("music");
 
 // ===========================
+// Boards
+// ===========================
+
+const boards = document.querySelectorAll(".board");
+
+let currentBoard = 0;
+
+function showBoard() {
+
+    if (currentBoard >= boards.length) return;
+
+    boards[currentBoard].classList.add("show");
+
+    setTimeout(() => {
+
+        boards[currentBoard].classList.remove("show");
+
+        currentBoard++;
+
+        if (currentBoard < boards.length) {
+
+            setTimeout(showBoard, 1000);
+
+        }
+
+    }, 6000);
+
+}
+
+// ===========================
 // Start Button
 // ===========================
 
 if (startBtn) {
 
-   startBtn.addEventListener("click", () => {
+    startBtn.addEventListener("click", () => {
 
-    startBtn.style.display = "none";
+        startBtn.style.display = "none";
 
-    if (music) {
-        music.play().catch(() => {});
-    }
+        if (music) {
 
-    const road = document.getElementById("roadSection");
+            music.play().catch(() => {});
 
-    if (road) {
-        road.scrollIntoView({
-            behavior: "smooth"
-        });
-    }
+        }
 
-});
+        const road = document.getElementById("roadSection");
+
+        if (road) {
+
+            road.scrollIntoView({
+
+                behavior: "smooth"
+
             });
 
         }
+
+        setTimeout(showBoard, 1500);
 
     });
 
 }
 
 // ===========================
-// Restart Button
+// Restart
 // ===========================
 
 if (restartBtn) {
 
     restartBtn.addEventListener("click", () => {
 
-        if (music) {
-
-            music.pause();
-
-            music.currentTime = 0;
-
-        }
-
-        window.scrollTo({
-
-            top: 0,
-
-            behavior: "smooth"
-
-        });
+        location.reload();
 
     });
 
@@ -113,31 +132,6 @@ if (stars) {
 }
 
 // ===========================
-// Show Boards
-// ===========================
-
-const boards = document.querySelectorAll(".board");
-
-const observer = new IntersectionObserver((entries) => {
-
-    entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-            entry.target.classList.add("show");
-
-        }
-
-    });
-
-}, {
-
-    threshold: 0.5
-
-});
-
-boards.forEach(board => observer.observe(board));
-// ===========================
 // Floating Hearts
 // ===========================
 
@@ -166,7 +160,6 @@ function createHeart() {
 
 }
 
-// إنشاء قلب كل ثانية ونصف
 setInterval(createHeart, 1500);
 
 // ===========================
@@ -204,11 +197,16 @@ if (finalTitle) {
             if (entry.isIntersecting) {
 
                 typeWriter();
+
                 typingObserver.disconnect();
 
             }
 
         });
+
+    }, {
+
+        threshold: 0.5
 
     });
 
